@@ -41,7 +41,7 @@
  <h1><img src="/twoleader/images/admin_logo.png"/></h1>
  <ul class="rt_nav">
   <li><a href="#" class="admin_icon">韩梅梅</a></li>
-  <li><a href="login.jsp" class="quit_icon">安全退出</a></li>
+     <li><a href="../talent/exit" class="quit_icon">安全退出</a></li>
  </ul>
 </header>
 <!--aside nav-->
@@ -51,11 +51,11 @@
   <li>
    <dl>
     <dt>功能管理</dt>
-   <dd><a href="Information.html">个人信息</a></dd>
-    <dd><a href="Experience.html" class="active">履职经历</a></dd>
-    <dd><a href="Wages.html" >工资明细</a></dd>
-     <dd><a href="Contract.html" >合同管理</a></dd>
-    <dd><a href="Now.html"  >目前工作</a></dd>
+       <dd><a href="../talent/listTalent?tid=1" >个人信息</a></dd>
+       <dd><a href="../talent/listExperience?tid=1"   class="active">履职经历</a></dd>
+       <dd><a href="../talent/listMoney?tid=1" >工资明细</a></dd>
+       <dd><a href="../talent/contract" >合同管理</a></dd>
+       <dd><a href="../talent/now"  >目前工作</a></dd>
    </dl>
   </li> 
   </li>
@@ -69,11 +69,10 @@
       </div>
      
         <section class="mtb">      
-<form:form action="/twoadmin/selectHousethree.do?SId=1"
-      modelAttribute="House" method="post" name="myform" >
+
         <input type="text" class="textbox textbox_225" placeholder="输入您需要查询的信息"  name="OHid"/> 
         <input type="submit" value="查询" class="group_btn"/> 
-  </form:form>
+
       </section>    
        
       <table class="table">

@@ -171,4 +171,21 @@
       Tother = #{tother,jdbcType=VARCHAR}
     where Tid = #{tid,jdbcType=INTEGER}
   </update>
+
+
+
+  <!--  //查询指定用户列表 -->
+  <select id="listTalent" resultType="talent">
+    	  select * from talent  where Tid=#{tid}
+    	</select>
+
+  <!--  //查询指定用户履职经历列表 -->
+  <select id="listExperience" resultType="experience">
+    	  select * from experience  where Tid=#{tid}
+    	</select>
+
+  <!--  //查询指定用户履职经历列表 -->
+  <select id="listMoney" resultType="money">
+    	  select * from money  where Tid=#{tid}
+    	</select>
 </mapper>

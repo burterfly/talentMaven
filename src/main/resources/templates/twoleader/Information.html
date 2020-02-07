@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +32,8 @@
 		});
 	})(jQuery);
 </script>
+
+
 </head>
 <body>
 
@@ -39,7 +42,7 @@
  <h1><img src="/twoleader/images/admin_logo.png"/></h1>
  <ul class="rt_nav">
   <li><a href="#" class="admin_icon">韩梅梅</a></li>
-  <li><a href="login.jsp" class="quit_icon">安全退出</a></li>
+  <li><a href="../talent/exit" class="quit_icon">安全退出</a></li>
  </ul>
 </header>
 
@@ -48,11 +51,11 @@
   <li>
    <dl>
     <dt>功能管理</dt>
-     <dd><a href="../talent/information"  class="active">个人信息</a></dd>
-    <dd><a href="Experience.html" >履职经历</a></dd>
-    <dd><a href="Wages.html" >工资明细</a></dd>
-    <dd><a href="Contract.html" >合同管理</a></dd>
-    <dd><a href="Now.html"  >目前工作</a></dd>
+    <dd><a href="../talent/listTalent?tid=1"  class="active">个人信息</a></dd>
+    <dd><a href="../talent/listExperience?tid=1" >履职经历</a></dd>
+    <dd><a href="../talent/listMoney?tid=1" >工资明细</a></dd>
+    <dd><a href="../talent/contract" >合同管理</a></dd>
+    <dd><a href="../talent/now"  >目前工作</a></dd>
    </dl>
   </li> 
   </li>
@@ -70,27 +73,31 @@
       <table class="table">
        <tr>
         <th style="width: 70px; ">姓名</th>
-         <th style="width: 70px; ">年龄</th>
+        <th style="width: 70px; ">年龄</th>
         <th style="width: 70px; ">性别</th>                  
         <th style="width: 70px; ">资格证书</th>        
         <th style="width: 70px; ">教育经历</th>                                 
         <th style="width: 70px; ">业务技能</th> 
-        <th style="width: 70px; ">综合评分</th>        
+        <th style="width: 70px; ">综合评分</th>
+        <th style="width: 70px; ">操作</th>
        </tr>
-            
 
 
-       <tr>
-        <td class="center">hello</td>
-        <td class="center"></td>
-        <td class="center"></td>
-        <td class="center"></td>
-        <td class="center"></td>
-        <td class="center"></td>
-        <td class="center"></td>           
-       </tr>      
-                   
-       </c:forEach>
+
+
+
+        <tr>
+         <td class="center">${talent.tname}</td>
+         <td class="center">${talent.tage}</td>
+         <td class="center">${talent.tsex}</td>
+         <td class="center">${talent.tcer}</td>
+         <td class="center">${talent.tedu}</td>
+         <td class="center">${talent.tpro}</td>
+         <td class="center">${talent.tpro}</td>
+         <td class="center">修改</td>
+        </tr>
+
+
                           
       </table>
     
