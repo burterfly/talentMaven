@@ -1,7 +1,7 @@
 package com.talent.service;
 
 
-import com.talent.dao.mapper.accountMapper;
+import com.talent.mapper.accountMapper;
 import com.talent.entity.account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
