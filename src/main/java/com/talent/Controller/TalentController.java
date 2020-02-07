@@ -1,4 +1,5 @@
 package com.talent.Controller;
+import com.talent.entity.contract;
 import com.talent.entity.experience;
 import com.talent.entity.money;
 import com.talent.entity.talent;
@@ -23,11 +24,8 @@ public class TalentController {
     @RequestMapping(value = {"/listTalent"})
     public String listTalent(Integer tid, HttpSession session){
     //    System.out.println("controller层======》查询人才信息:"+tid);
-
         List<talent> listtalent=talentservice.listTalent(tid);
         session.setAttribute("listtalent", listtalent);
-
-
  //       for(int i=0;i<listtalent.size();i++)
  //       {
  //           String a=listtalent.get(i).getTname();
@@ -53,19 +51,25 @@ public class TalentController {
     public String listMoney(Integer tid, HttpSession session){
         List<money> listmoney=talentservice.listMoney(tid);
         session.setAttribute("listmoney", listmoney);
-
  //             for(int i=0;i<listmoney.size();i++)
  //                        {
  //                            String a=listmoney.get(i).getMmoney();
  //                            System.out.println(a);
  //                        }
-
         return "twoleader/Wages";
     }
 
 
-    @RequestMapping(value = {"/wages"})
-    public String wages(){
+    @RequestMapping(value = {"/listContract"})
+    public String listContract(Integer tid, HttpSession session){
+        List<contract> listcontract=talentservice.listContract(tid);
+        session.setAttribute("listcontract", listcontract);
+
+ //       for(int i=0;i<listcontract.size();i++)//                                   {
+ //                                        String a=listcontract.get(i).getCname();
+ //                                        System.out.println(a);
+ //                                   }
+
         return "twoleader/Contract";
     }
 

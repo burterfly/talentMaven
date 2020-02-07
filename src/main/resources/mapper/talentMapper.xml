@@ -188,4 +188,11 @@
   <select id="listMoney" resultType="money">
     	  select * from money  where Tid=#{tid}
     	</select>
+
+  <!--  //查询指定用户合同列表 -->
+  <select id="listContract" resultType="contract">
+    	  select * from contract  where Tid=#{tid}
+    	</select>
+
+
 </mapper>

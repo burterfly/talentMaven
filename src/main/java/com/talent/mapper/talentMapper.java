@@ -1,5 +1,6 @@
 package com.talent.mapper;
 
+import com.talent.entity.contract;
 import com.talent.entity.experience;
 import com.talent.entity.money;
 import com.talent.entity.talent;
@@ -20,4 +21,7 @@ public interface talentMapper {
 
     //查询指定用户工资列表
     List<money> listMoney(Integer tid);
+
+    //查询指定用户合同列表
+    List<contract> listContract(Integer tid);
 }

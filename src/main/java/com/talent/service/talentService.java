@@ -1,6 +1,7 @@
 package com.talent.service;
 
 
+import com.talent.entity.contract;
 import com.talent.entity.experience;
 import com.talent.entity.money;
 import com.talent.entity.talent;
@@ -35,6 +36,12 @@ public class talentService {
     public List<money> listMoney(Integer tid)
     {
         return talentmapper.listMoney(tid);
+    }
+
+    //查询指定人才合同
+    public List<contract> listContract(Integer tid)
+    {
+        return talentmapper.listContract(tid);
     }
 
 }

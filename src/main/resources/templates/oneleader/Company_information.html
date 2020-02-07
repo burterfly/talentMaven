@@ -41,7 +41,7 @@
  <h1><img src="/twoleader/images/admin_logo.png"/></h1>
  <ul class="rt_nav">
   <li><a href="#" class="admin_icon">人民银行</a></li>
-  <li><a href="login.jsp" class="quit_icon">安全退出</a></li>
+  <li><a href="../business/exit" class="quit_icon">安全退出</a></li>
  </ul>
 </header>
 <!--aside nav-->
@@ -51,10 +51,9 @@
   <li>
    <dl>
     <dt>功能管理</dt>
-    <dd><a href="Company_information.html" class="active">公司信息</a></dd>
-    <dd><a href="Contract.html" >合同管理</a></dd>
-    
-    <dd><a href="Talent_information.html">聘用记录</a></dd>
+    <dd><a href="../business/listBusiness?bid=1" class="active">公司信息</a></dd>
+    <dd><a href="../business/listContract?bid=1" >合同管理</a></dd>
+    <dd><a href="../business/listUsedTalent?bid=1">聘用记录</a></dd>
  
    </dl>
   </li> 
@@ -64,13 +63,12 @@
 
 
       <section class="rt_wrap content mCustomScrollbar">     
-       <form:form action="/twoadmin/selectHouse.do?SId=1"
-        modelAttribute="House" method="post" name="myform" >      
+
       <div class="rt_content">
       <div class="page_title">
        <h2 class="fl">公司详情</h2>     
       </div>                 
-      </form:form>
+
    
       
       
