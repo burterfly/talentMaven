@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.talent.mapper.talentMapper" >
+  <resultMap id="BaseResultMap" type="com.talent.entity.talent" >
+    <id column="Tid" property="tid" jdbcType="INTEGER" />
+    <result column="Tusername" property="tusername" jdbcType="VARCHAR" />
+    <result column="Tpassword" property="tpassword" jdbcType="VARCHAR" />
+    <result column="Tname" property="tname" jdbcType="VARCHAR" />
+    <result column="Tage" property="tage" jdbcType="INTEGER" />
+    <result column="Tsex" property="tsex" jdbcType="VARCHAR" />
+    <result column="Tcer" property="tcer" jdbcType="VARCHAR" />
+    <result column="Tedu" property="tedu" jdbcType="VARCHAR" />
+    <result column="Tpro" property="tpro" jdbcType="VARCHAR" />
+    <result column="Tsco" property="tsco" jdbcType="INTEGER" />
+    <result column="Twages" property="twages" jdbcType="VARCHAR" />
+    <result column="Tother" property="tother" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Tid, Tusername, Tpassword, Tname, Tage, Tsex, Tcer, Tedu, Tpro, Tsco, Twages, Tother
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from talent
+    where Tid = #{tid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from talent
+    where Tid = #{tid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.talent.entity.talent" >
+    insert into talent (Tid, Tusername, Tpassword, 
+      Tname, Tage, Tsex, 
+      Tcer, Tedu, Tpro, Tsco, 
+      Twages, Tother)
+    values (#{tid,jdbcType=INTEGER}, #{tusername,jdbcType=VARCHAR}, #{tpassword,jdbcType=VARCHAR}, 
+      #{tname,jdbcType=VARCHAR}, #{tage,jdbcType=INTEGER}, #{tsex,jdbcType=VARCHAR}, 
+      #{tcer,jdbcType=VARCHAR}, #{tedu,jdbcType=VARCHAR}, #{tpro,jdbcType=VARCHAR}, #{tsco,jdbcType=INTEGER}, 
+      #{twages,jdbcType=VARCHAR}, #{tother,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.talent.entity.talent" >
+    insert into talent
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tid != null" >
+        Tid,
+      </if>
+      <if test="tusername != null" >
+        Tusername,
+      </if>
+      <if test="tpassword != null" >
+        Tpassword,
+      </if>
+      <if test="tname != null" >
+        Tname,
+      </if>
+      <if test="tage != null" >
+        Tage,
+      </if>
+      <if test="tsex != null" >
+        Tsex,
+      </if>
+      <if test="tcer != null" >
+        Tcer,
+      </if>
+      <if test="tedu != null" >
+        Tedu,
+      </if>
+      <if test="tpro != null" >
+        Tpro,
+      </if>
+      <if test="tsco != null" >
+        Tsco,
+      </if>
+      <if test="twages != null" >
+        Twages,
+      </if>
+      <if test="tother != null" >
+        Tother,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tid != null" >
+        #{tid,jdbcType=INTEGER},
+      </if>
+      <if test="tusername != null" >
+        #{tusername,jdbcType=VARCHAR},
+      </if>
+      <if test="tpassword != null" >
+        #{tpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="tname != null" >
+        #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="tage != null" >
+        #{tage,jdbcType=INTEGER},
+      </if>
+      <if test="tsex != null" >
+        #{tsex,jdbcType=VARCHAR},
+      </if>
+      <if test="tcer != null" >
+        #{tcer,jdbcType=VARCHAR},
+      </if>
+      <if test="tedu != null" >
+        #{tedu,jdbcType=VARCHAR},
+      </if>
+      <if test="tpro != null" >
+        #{tpro,jdbcType=VARCHAR},
+      </if>
+      <if test="tsco != null" >
+        #{tsco,jdbcType=INTEGER},
+      </if>
+      <if test="twages != null" >
+        #{twages,jdbcType=VARCHAR},
+      </if>
+      <if test="tother != null" >
+        #{tother,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.talent.entity.talent" >
+    update talent
+    <set >
+      <if test="tusername != null" >
+        Tusername = #{tusername,jdbcType=VARCHAR},
+      </if>
+      <if test="tpassword != null" >
+        Tpassword = #{tpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="tname != null" >
+        Tname = #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="tage != null" >
+        Tage = #{tage,jdbcType=INTEGER},
+      </if>
+      <if test="tsex != null" >
+        Tsex = #{tsex,jdbcType=VARCHAR},
+      </if>
+      <if test="tcer != null" >
+        Tcer = #{tcer,jdbcType=VARCHAR},
+      </if>
+      <if test="tedu != null" >
+        Tedu = #{tedu,jdbcType=VARCHAR},
+      </if>
+      <if test="tpro != null" >
+        Tpro = #{tpro,jdbcType=VARCHAR},
+      </if>
+      <if test="tsco != null" >
+        Tsco = #{tsco,jdbcType=INTEGER},
+      </if>
+      <if test="twages != null" >
+        Twages = #{twages,jdbcType=VARCHAR},
+      </if>
+      <if test="tother != null" >
+        Tother = #{tother,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Tid = #{tid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.talent.entity.talent" >
+    update talent
+    set Tusername = #{tusername,jdbcType=VARCHAR},
+      Tpassword = #{tpassword,jdbcType=VARCHAR},
+      Tname = #{tname,jdbcType=VARCHAR},
+      Tage = #{tage,jdbcType=INTEGER},
+      Tsex = #{tsex,jdbcType=VARCHAR},
+      Tcer = #{tcer,jdbcType=VARCHAR},
+      Tedu = #{tedu,jdbcType=VARCHAR},
+      Tpro = #{tpro,jdbcType=VARCHAR},
+      Tsco = #{tsco,jdbcType=INTEGER},
+      Twages = #{twages,jdbcType=VARCHAR},
+      Tother = #{tother,jdbcType=VARCHAR}
+    where Tid = #{tid,jdbcType=INTEGER}
+  </update>
+</mapper>
