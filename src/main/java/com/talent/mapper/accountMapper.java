@@ -1,7 +1,7 @@
 package com.talent.mapper;
 
 import com.talent.entity.account;
-import com.talent.entity.accountExample;
+
 import java.util.List;
 import java.util.Map;
 

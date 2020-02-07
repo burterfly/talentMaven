@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.talent.mapper.staffMapper" >
+  <resultMap id="BaseResultMap" type="com.talent.entity.staff" >
+    <id column="Sid" property="sid" jdbcType="INTEGER" />
+    <result column="Susername" property="susername" jdbcType="VARCHAR" />
+    <result column="Spassword" property="spassword" jdbcType="VARCHAR" />
+    <result column="Sother" property="sother" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Sid, Susername, Spassword, Sother
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from staff
+    where Sid = #{sid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from staff
+    where Sid = #{sid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.talent.entity.staff" >
+    insert into staff (Sid, Susername, Spassword, 
+      Sother)
+    values (#{sid,jdbcType=INTEGER}, #{susername,jdbcType=VARCHAR}, #{spassword,jdbcType=VARCHAR}, 
+      #{sother,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.talent.entity.staff" >
+    insert into staff
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        Sid,
+      </if>
+      <if test="susername != null" >
+        Susername,
+      </if>
+      <if test="spassword != null" >
+        Spassword,
+      </if>
+      <if test="sother != null" >
+        Sother,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="susername != null" >
+        #{susername,jdbcType=VARCHAR},
+      </if>
+      <if test="spassword != null" >
+        #{spassword,jdbcType=VARCHAR},
+      </if>
+      <if test="sother != null" >
+        #{sother,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.talent.entity.staff" >
+    update staff
+    <set >
+      <if test="susername != null" >
+        Susername = #{susername,jdbcType=VARCHAR},
+      </if>
+      <if test="spassword != null" >
+        Spassword = #{spassword,jdbcType=VARCHAR},
+      </if>
+      <if test="sother != null" >
+        Sother = #{sother,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Sid = #{sid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.talent.entity.staff" >
+    update staff
+    set Susername = #{susername,jdbcType=VARCHAR},
+      Spassword = #{spassword,jdbcType=VARCHAR},
+      Sother = #{sother,jdbcType=VARCHAR}
+    where Sid = #{sid,jdbcType=INTEGER}
+  </update>
+</mapper>
