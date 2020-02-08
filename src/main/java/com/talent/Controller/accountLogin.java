@@ -4,7 +4,9 @@ import com.talent.entity.account;
 import com.talent.service.UserLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -16,6 +18,13 @@ public class accountLogin {
 
     @Autowired
     private UserLoginService userLoginService;
+
+    @RequestMapping(value = "springboot", method = RequestMethod.GET)
+    public String show(Model model){
+        model.addAttribute("uid","123456789");
+        model.addAttribute("myname","Jerry");
+        return "springboot";
+    }
 
     /**
      * 跳转到登录页面
@@ -31,7 +40,7 @@ public class accountLogin {
      * @return 返回注册界面
      */
     @RequestMapping(value = {"/registerpage"})
-    public String register() {
+    public String register(Model model) {
         return "register";
     }
 
@@ -55,23 +64,25 @@ public class accountLogin {
      * 注册新用户
      * @return 注册结果
      */
-    @ResponseBody
     @RequestMapping(value = {"/uregister"})
     public String addUser(@RequestParam("username") String username,
                           @RequestParam("password") String password,
                           @RequestParam("password2") String password2,
-                          @RequestParam("age") int age){
+                          @RequestParam("age") int age,Model model){
 
         if(!password.equals(password2)){
 
             return "两次密码不相同，注册失败！！";
         }else {
             int res = userLoginService.adduser(username,password,age);
+            String name = "";
             if(res == 0){
-                return "注册失败！";
+                name = "注册失败";
             }else {
-                return "注册成功！";
+                name = "注册成功";
             }
+            model.addAttribute("result", name);
+            return "register";
         }
 
     }

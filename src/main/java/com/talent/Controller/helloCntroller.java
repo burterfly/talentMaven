@@ -22,9 +22,9 @@ public class helloCntroller {
 
 
 
-    @RequestMapping(value = {"/springboot"})
+    @RequestMapping(value = {"/index1"})
         public String hello(){
-            return "HelloWord";
+            return "index1";
         }
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)

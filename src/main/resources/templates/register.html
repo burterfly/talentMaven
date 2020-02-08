@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>注册</title>
 </head>
 <body>
@@ -12,5 +12,6 @@
     年龄:<input type="text" name="age" /></br>
     <input type="submit" value="注册">
 </form>
+<p th:text="'用户名称：' + ${result}"/>
 </body>
 </html>

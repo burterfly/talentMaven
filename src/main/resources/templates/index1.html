@@ -1,10 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" >
+<script th:src="@{/js/avalon.js}"></script>
 <head>
     <meta charset="UTF-8">
     <title>登录成功</title>
+    <script>
+        <!--vm相当于一个数值绑定,定义好后给a负值就可以自动显示到html上-->
+        var vm = avalon.define({
+            $id: "test1",
+            a: 111
+        })
+    </script>
+    <script>
+        var vm1 = avalon.define({
+            $id: "test",
+            a: 111
+        })
+
+
+        vm1.$watch('a', function(){
+            console.log('vm1.a change')
+        })
+        var vm2 = avalon.define({
+            $id: 'test2',
+            b: 222
+        })
+        vm2.$watch('b', function(){
+            console.log('vm2.b change')
+        })
+        var vm3 = avalon.mediatorFactory(vm1,vm2)
+        //这个回调其实放在vm1.$events中
+        vm3.$watch('a', function(){
+            console.log('vm3.a change')
+        })
+        //这个回调其实放在vm2.$events中
+        vm3.$watch('b', function(){
+            console.log('vm3.b change')
+        })
+        console.log('------')
+        vm3.a = 22
+        vm3.b = 44
+    </script>
+
+    <style>
+        .ms-controller{
+            display:none;
+        }
+    </style>
+
 </head>
 <body>
+<div ms-controller="test">
+    <input ms-duplex="@a" />
+    <p ms-text="@a"></p> <!--或者 <p>{{@a}}}</p> 都是填充文本 -->
+</div>
+
 <h1>用户名与密码正确，登录成功！！！</h1>
 </body>
+
+
 </html>
