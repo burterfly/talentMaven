@@ -1,10 +1,14 @@
 package com.talent.Controller;
 
 import com.talent.entity.User;
+import com.talent.entity.talent;
+import com.talent.service.talentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import  org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import  org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
@@ -13,6 +17,10 @@ import java.util.List;
 @Controller
 @RequestMapping(value = {"/hello"})
 public class helloCntroller {
+    @Autowired
+    private talentService talentservice;
+
+
 
     @RequestMapping(value = {"/springboot"})
         public String hello(){
@@ -33,22 +41,11 @@ public class helloCntroller {
         return "home";
     }
 
-    @RequestMapping(value = "/data", method = RequestMethod.POST)
+    @RequestMapping(value = "/data", method = RequestMethod.GET)
     @ResponseBody
-    public List<User> data() {
-        List<User> list = new ArrayList<User>();
-
-        for (int i = 0; i < 10; i++) {
-            User user = new User();
-            user.setId(i + 1);
-            user.setName("springboot" + i);
-            user.setSex("male");
-            user.setAge(i + 1);
-            user.setRole("developer");
-
-            list.add(user);
-        }
-
+    public List<talent> data( Integer tid) {
+        System.out.println(tid);
+        List<talent> list=talentservice.listTalent(tid);
         return list;
     }
 }

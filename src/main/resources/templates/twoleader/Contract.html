@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html  xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8"/>
 <title>后台管理系统</title>
@@ -51,7 +51,7 @@
   <li>
    <dl>
    <dt>功能管理</dt>
-    <dd><a href="../talent/listTalent?tid=1" >个人信息</a></dd>
+    <dd><a href="../talent/listTalent?tid=1"  >个人信息</a></dd>
     <dd><a href="../talent/listExperience?tid=1" >履职经历</a></dd>
     <dd><a href="../talent/listMoney?tid=1" >工资明细</a></dd>
     <dd><a href="../talent/listContract?tid=1"  class="active">合同管理</a></dd>
@@ -90,4 +90,8 @@
  </div>
 </section>
 </body>
+<script th:src="@{/js/jquery-2.1.1.min.js}"></script>
+<script th:src="@{/js/avalon.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/myscript.js}"></script>
 </html>

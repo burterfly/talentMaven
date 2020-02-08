@@ -1,20 +1,13 @@
 package com.talent.service;
-
-
 import com.talent.mapper.accountMapper;
 import com.talent.entity.account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Map;
 
 @Service
 public class UserLoginService {
-
-    /**
-     * 注入dao
-     */
     @Autowired
     private accountMapper usermapper;
 

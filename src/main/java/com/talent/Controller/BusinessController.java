@@ -63,6 +63,12 @@ public class BusinessController {
         return "oneleader/Talent_information";
     }
 
+    @RequestMapping(value = {"/Publish"})
+    public String Publish(){
+        return "oneleader/Publish";
+    }
+
+
     @RequestMapping(value = {"/exit"})
     public String exit(){
         return "foregro/login";
