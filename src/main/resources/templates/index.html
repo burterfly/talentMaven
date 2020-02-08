@@ -6,8 +6,10 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
 </head>
 <body ms-controller="viewmodel">
+
 <h1 th:text="${msg}">Hello World</h1>
 <button type="button" class="btn btn-primary" style="margin: 10px;" ms-click="@request">{{@text}}</button>
+<button type="button" class="btn btn-primary" style="margin: 10px;" ms-click="@requestAddOne">{{@text}}</button>
 <table class="table table-striped">
     <thead>
     <tr>
