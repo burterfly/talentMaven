@@ -3,10 +3,10 @@ server:
 
 spring:
   datasource:
-    name: talent
-    url: jdbc:mysql://127.0.0.1:3306/talent?serverTimezone=UTC
+    name: teacher
+    url: jdbc:mysql://127.0.0.1:3308/rcpq?serverTimezone=UTC
     username: root
-    password:
+    password: 123123
     driver-class-name: com.mysql.jdbc.Driver
 
 mybatis:
