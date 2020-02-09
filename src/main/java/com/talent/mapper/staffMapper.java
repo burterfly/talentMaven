@@ -1,21 +1,15 @@
 package com.talent.mapper;
 
+import com.talent.entity.contract;
 import com.talent.entity.staff;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Mapper
 @Component
 public interface staffMapper {
-    int deleteByPrimaryKey(Integer sid);
-
-    int insert(staff record);
-
-    int insertSelective(staff record);
-
-    staff selectByPrimaryKey(Integer sid);
-
-    int updateByPrimaryKeySelective(staff record);
-
-    int updateByPrimaryKey(staff record);
+    //查询合同列表
+    List<contract> listContract();
 }

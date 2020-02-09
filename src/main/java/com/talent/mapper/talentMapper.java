@@ -1,9 +1,6 @@
 package com.talent.mapper;
 
-import com.talent.entity.contract;
-import com.talent.entity.experience;
-import com.talent.entity.money;
-import com.talent.entity.talent;
+import com.talent.entity.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +10,11 @@ import java.util.Map;
 @Mapper
 @Component
 public interface talentMapper {
+    //查询所有员工
+    List<talent> listAllTalent();
+
+    List<business> listAllBusiness();
+
     //查询指定用户列表
     talent listTalent(Integer tid);
 

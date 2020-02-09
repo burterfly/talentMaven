@@ -16,144 +16,11 @@
   <sql id="Base_Column_List" >
     Bid, Busername, Bpassword, Bname, Baddress, Btime, Bservice, Bphoto, Bjob, Bother
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from business
-    where Bid = #{bid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from business
-    where Bid = #{bid,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.talent.entity.business" >
-    insert into business (Bid, Busername, Bpassword, 
-      Bname, Baddress, Btime, 
-      Bservice, Bphoto, Bjob, 
-      Bother)
-    values (#{bid,jdbcType=INTEGER}, #{busername,jdbcType=VARCHAR}, #{bpassword,jdbcType=VARCHAR}, 
-      #{bname,jdbcType=VARCHAR}, #{baddress,jdbcType=VARCHAR}, #{btime,jdbcType=VARCHAR}, 
-      #{bservice,jdbcType=VARCHAR}, #{bphoto,jdbcType=VARCHAR}, #{bjob,jdbcType=VARCHAR}, 
-      #{bother,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.talent.entity.business" >
-    insert into business
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="bid != null" >
-        Bid,
-      </if>
-      <if test="busername != null" >
-        Busername,
-      </if>
-      <if test="bpassword != null" >
-        Bpassword,
-      </if>
-      <if test="bname != null" >
-        Bname,
-      </if>
-      <if test="baddress != null" >
-        Baddress,
-      </if>
-      <if test="btime != null" >
-        Btime,
-      </if>
-      <if test="bservice != null" >
-        Bservice,
-      </if>
-      <if test="bphoto != null" >
-        Bphoto,
-      </if>
-      <if test="bjob != null" >
-        Bjob,
-      </if>
-      <if test="bother != null" >
-        Bother,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="bid != null" >
-        #{bid,jdbcType=INTEGER},
-      </if>
-      <if test="busername != null" >
-        #{busername,jdbcType=VARCHAR},
-      </if>
-      <if test="bpassword != null" >
-        #{bpassword,jdbcType=VARCHAR},
-      </if>
-      <if test="bname != null" >
-        #{bname,jdbcType=VARCHAR},
-      </if>
-      <if test="baddress != null" >
-        #{baddress,jdbcType=VARCHAR},
-      </if>
-      <if test="btime != null" >
-        #{btime,jdbcType=VARCHAR},
-      </if>
-      <if test="bservice != null" >
-        #{bservice,jdbcType=VARCHAR},
-      </if>
-      <if test="bphoto != null" >
-        #{bphoto,jdbcType=VARCHAR},
-      </if>
-      <if test="bjob != null" >
-        #{bjob,jdbcType=VARCHAR},
-      </if>
-      <if test="bother != null" >
-        #{bother,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.talent.entity.business" >
-    update business
-    <set >
-      <if test="busername != null" >
-        Busername = #{busername,jdbcType=VARCHAR},
-      </if>
-      <if test="bpassword != null" >
-        Bpassword = #{bpassword,jdbcType=VARCHAR},
-      </if>
-      <if test="bname != null" >
-        Bname = #{bname,jdbcType=VARCHAR},
-      </if>
-      <if test="baddress != null" >
-        Baddress = #{baddress,jdbcType=VARCHAR},
-      </if>
-      <if test="btime != null" >
-        Btime = #{btime,jdbcType=VARCHAR},
-      </if>
-      <if test="bservice != null" >
-        Bservice = #{bservice,jdbcType=VARCHAR},
-      </if>
-      <if test="bphoto != null" >
-        Bphoto = #{bphoto,jdbcType=VARCHAR},
-      </if>
-      <if test="bjob != null" >
-        Bjob = #{bjob,jdbcType=VARCHAR},
-      </if>
-      <if test="bother != null" >
-        Bother = #{bother,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where Bid = #{bid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.talent.entity.business" >
-    update business
-    set Busername = #{busername,jdbcType=VARCHAR},
-      Bpassword = #{bpassword,jdbcType=VARCHAR},
-      Bname = #{bname,jdbcType=VARCHAR},
-      Baddress = #{baddress,jdbcType=VARCHAR},
-      Btime = #{btime,jdbcType=VARCHAR},
-      Bservice = #{bservice,jdbcType=VARCHAR},
-      Bphoto = #{bphoto,jdbcType=VARCHAR},
-      Bjob = #{bjob,jdbcType=VARCHAR},
-      Bother = #{bother,jdbcType=VARCHAR}
-    where Bid = #{bid,jdbcType=INTEGER}
-  </update>
-
-
-
 
   <!--  //查询指定公司列表 -->
+  <select id="listAllBusiness" resultType="business">
+    	  select * from business
+    	</select>
   <select id="listBusiness" resultType="business">
     	  select * from business  where Bid=#{bid}
     	</select>
@@ -167,11 +34,5 @@
   <select id="listUsedTalent" resultType="usedtalent">
     	   select * from talent,experience where talent.Tid=experience.Tid and experience.Bid=#{bid}
     	</select>
-
-
-
-
-
-
 
 </mapper>

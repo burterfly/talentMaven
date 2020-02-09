@@ -3,8 +3,8 @@ import com.talent.entity.contract;
 import com.talent.entity.experience;
 import com.talent.entity.money;
 import com.talent.entity.talent;
+import com.talent.service.TalentService;
 import com.talent.service.businessService;
-import com.talent.service.talentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping(value = {"/talent"})
 public class TalentController {
     @Autowired
-    private talentService talentservice;
+    private TalentService talentservice;
     @Autowired
     private businessService businessservice;
 

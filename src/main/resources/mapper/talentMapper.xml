@@ -172,7 +172,14 @@
     where Tid = #{tid,jdbcType=INTEGER}
   </update>
 
+  <select id="listAllBusiness" resultType="business">
+    	  select * from business
+    	</select>
 
+  <!--  //查询指定用户列表 -->
+  <select id="listAllTalent" resultType="talent">
+    	  select * from talent
+    	</select>
 
   <!--  //查询指定用户列表 -->
   <select id="listTalent" resultType="talent">

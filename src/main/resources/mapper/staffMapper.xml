@@ -79,4 +79,11 @@
       Sother = #{sother,jdbcType=VARCHAR}
     where Sid = #{sid,jdbcType=INTEGER}
   </update>
+
+
+
+  <!--  //查询合同列表 -->
+  <select id="listContract" resultType="contract">
+    	  select * from contract
+    	</select>
 </mapper>

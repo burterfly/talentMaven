@@ -30,6 +30,26 @@
     </tr>
     </tbody>
 </table>
+<table class="table table-striped">
+    <tr>
+        <th style="width: 70px; ">名称</th>
+        <th style="width: 70px; ">办公地点</th>
+        <th style="width: 70px; ">注册时间</th>
+        <th style="width: 70px; ">主营业务</th>
+        <th style="width: 70px; ">合同详情</th>
+        <th style="width: 70px; ">操作</th>
+    </tr>
+    <tbody>
+    <tr ms-for="el in @datalist">
+    <td >{{el.bname}}</td>
+    <td >{{el.bphoto}}</td>
+    <td >{{el.bjob}}</td>
+    <td >{{el.Bid}}</td>
+    <td >{{el.bid}}</td>
+    <td class="center">删除/添加</td>
+    </tr>
+    </tbody>
+</table>
 </body>
 <script th:src="@{/js/jquery-2.1.1.min.js}"></script>
 <script th:src="@{/js/avalon.js}"></script>

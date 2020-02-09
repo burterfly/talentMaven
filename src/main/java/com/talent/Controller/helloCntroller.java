@@ -1,14 +1,13 @@
 package com.talent.Controller;
 
 import com.talent.entity.User;
-import com.talent.entity.talent;
-import com.talent.service.talentService;
+import com.talent.entity.business;
+import com.talent.service.TalentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import  org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import  org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
@@ -17,10 +16,9 @@ import java.util.List;
 @Controller
 @RequestMapping(value = {"/hello"})
 public class helloCntroller {
+
     @Autowired
-    private talentService talentservice;
-
-
+    private TalentService talentService;
 
     @RequestMapping(value = {"/index1"})
         public String hello(){
@@ -41,11 +39,32 @@ public class helloCntroller {
         return "home";
     }
 
+
     @RequestMapping(value = "/data", method = RequestMethod.GET)
     @ResponseBody
-    public List<talent> data( Integer tid) {
-        System.out.println(tid);
-        List<talent> list=talentservice.listTalent(tid);
+    public List<business> data() {
+        List<business> allbusiness = talentService.listAllBusiness();
+        //     model.addAttribute("allbusiness", allbusiness);
+        System.out.println("显示所有公司"+allbusiness.size());
+        return allbusiness;
+    }
+
+    @RequestMapping(value = "/data1", method = RequestMethod.GET)
+    @ResponseBody
+    public List<User> data1() {
+        List<User> list = new ArrayList<User>();
+
+        for (int i = 0; i < 10; i++) {
+            User user = new User();
+            user.setId(i + 1);
+            user.setName("springboot" + i);
+            user.setSex("male");
+            user.setAge(i + 1);
+            user.setRole("developer");
+
+            list.add(user);
+        }
+
         return list;
     }
 }
