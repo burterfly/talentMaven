@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.w3.org/1999/xhtml">
+<html  xmlns:th="http://www.thymeleaf.org">
 <head>
- <meta charset="utf-8"/>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
  <title>后台管理系统</title>
  <meta name="author" content="DeathGhost" />
  <link rel="stylesheet" type="text/css" href="/twoleader/css/style.css">
@@ -34,7 +34,7 @@
   })(jQuery);
  </script>
 </head>
-<body ms-controller="viewmodel">
+<body >
 <!--header-->
 <header>
  <h1> <img src="/twoleader/images/admin_logo.png"/></h1>
@@ -76,18 +76,20 @@
         <th style="width: 70px; ">综合评分</th>
         <th style="width: 70px; ">操作</th>
        </tr>
-        <tr  ms-for="el in @datalist">
-         <td class="center">{{el.tname}}</td>
-         <td class="center">{{el.tage}}</td>
-         <td class="center">{{el.tsex}}</td>
-         <td class="center">{{el.tcer}}</td>
-         <td class="center">{{el.tedu}}</td>
-         <td class="center">{{el.tpro}}</td>
-         <td class="center">{{el.tsco}}</td>
+
+        <tr>
+         <td th:text = "${listtalent.getTname()}" class="center" ></td>
+         <td th:text = "${listtalent.getTage()}" class="center" ></td>
+         <td th:text = "${listtalent.getTsex()}" class="center"></td>
+         <td th:text = "${listtalent.getTcer()}" class="center"></td>
+         <td th:text = "${listtalent.getTedu()}" class="center"></td>
+         <td th:text = "${listtalent.getTpro()}" class="center"></td>
+         <td th:text = "${listtalent.getTsco()}" class="center"></td>
          <td class="center">修改</td>
         </tr>
+
       </table>
-    
+
  </div>
 </section>
 </body>

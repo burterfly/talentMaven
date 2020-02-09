@@ -3,74 +3,64 @@ import com.talent.entity.contract;
 import com.talent.entity.experience;
 import com.talent.entity.money;
 import com.talent.entity.talent;
+import com.talent.service.businessService;
 import com.talent.service.talentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Map;
+
 
 @Controller
 @RequestMapping(value = {"/talent"})
 public class TalentController {
     @Autowired
     private talentService talentservice;
-
+    @Autowired
+    private businessService businessservice;
 
     @RequestMapping(value = {"/listTalent"})
-    public String listTalent(Integer tid, HttpSession session){
-    //    System.out.println("controller层======》查询人才信息:"+tid);
-        List<talent> listtalent=talentservice.listTalent(tid);
-        session.setAttribute("listtalent", listtalent);
- //       for(int i=0;i<listtalent.size();i++)
- //       {
- //           String a=listtalent.get(i).getTname();
- //           System.out.println(a);
- //       }
+    public String listTalent(Integer tid, Model model){
+        talent listtalent  = talentservice.listTalent(tid);
+        model.addAttribute("listtalent", listtalent);
         return "twoleader/Information";
     }
 
 
+    @RequestMapping(value = {"/listContract"})
+    public String listContract(Integer tid, Model model){
+        List<contract> listcontract=talentservice.listContract(tid);
+        model.addAttribute("listcontract", listcontract);
+        return "twoleader/Contract";
+    }
+
     @RequestMapping(value = {"/listExperience"})
-    public String listExperience(Integer tid, HttpSession session){
+    public String listExperience(Integer tid, Model model){
         List<experience> listexperience=talentservice.listExperience(tid);
-        session.setAttribute("listexperience", listexperience);
-  //      for(int i=0;i<listexperience.size();i++)
-  //                 {
-  //                     String a=listexperience.get(i).getEjob();
-  //                     System.out.println(a);
-  //                 }
+        for(int i=0;i<listexperience.size();i++)
+        {
+            Integer bid=listexperience.get(i).getBid();
+            String name;
+            name=businessservice.listBusiness(bid).getBname();
+            listexperience.get(i).setBname(name);
+        }
+        model.addAttribute("listexperience", listexperience);
         return "twoleader/Experience";
     }
 
     @RequestMapping(value = {"/listMoney"})
-    public String listMoney(Integer tid, HttpSession session){
+    public String listMoney(Integer tid, Model model){
         List<money> listmoney=talentservice.listMoney(tid);
-        session.setAttribute("listmoney", listmoney);
- //             for(int i=0;i<listmoney.size();i++)
- //                        {
- //                            String a=listmoney.get(i).getMmoney();
- //                            System.out.println(a);
- //                        }
+        for(int i=0;i<listmoney.size();i++)
+        {
+            Integer bid=listmoney.get(i).getBid();
+            String name;
+            name=businessservice.listBusiness(bid).getBname();
+            listmoney.get(i).setBname(name);
+        }
+        model.addAttribute("listmoney", listmoney);
         return "twoleader/Wages";
-    }
-
-
-    @RequestMapping(value = {"/listContract"})
-    public String listContract(Integer tid, HttpSession session){
-        List<contract> listcontract=talentservice.listContract(tid);
-        session.setAttribute("listcontract", listcontract);
-
- //       for(int i=0;i<listcontract.size();i++)//                                   {
- //                                        String a=listcontract.get(i).getCname();
- //                                        System.out.println(a);
- //                                   }
-
-        return "twoleader/Contract";
     }
 
     @RequestMapping(value = {"/now"})

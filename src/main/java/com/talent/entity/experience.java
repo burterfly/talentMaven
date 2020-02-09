@@ -13,6 +13,8 @@ public class experience {
 
     private Integer esco;
 
+    private String bname;
+
     private String eother;
 
     public Integer getEid() {
@@ -61,6 +63,14 @@ public class experience {
 
     public void setEsco(Integer esco) {
         this.esco = esco;
+    }
+
+    public String getBname() {
+        return bname;
+    }
+
+    public void setBname(String bname) {
+        this.bname = bname == null ? null : bname.trim();
     }
 
     public String getEother() {

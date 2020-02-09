@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html  xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8"/>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title>后台管理系统</title>
 <meta name="author" content="DeathGhost" />
 <link rel="stylesheet" type="text/css" href="/twoleader/css/style.css">
@@ -84,32 +84,25 @@
         <th style="width: 70px; ">工作时间</th>  
          <th style="width: 70px; ">评分</th>      
        </tr>
-                    
-       <tr>
-        <td class="center">韩梅梅</td>                                 
-        <td class="center">25</td>               
-        <td class="center">女</td>                
-        <td class="center">无</td>
-        <td class="center">本科</td>
-        <td class="center">英语</td> 
-         <td class="center">2015/8-2015/9</td> 
-          <td class="center">5</td>            
-       </tr>   
-                  
-                   <tr>
-        <td class="center">韩梅梅</td>                                 
-        <td class="center">25</td>               
-        <td class="center">女</td>                
-        <td class="center">无</td>
-        <td class="center">本科</td>
-        <td class="center">英语</td> 
-         <td class="center">2015/8-2015/9</td> 
-          <td class="center">待评分</td>            
-       </tr>   
+
+       <tr th:each="usedtalent:${listusedtalent}">
+        <td th:text = "${usedtalent.getTname()}" class="center"></td>
+        <td th:text = "${usedtalent.getTage()}" class="center"></td>
+        <td th:text = "${usedtalent.getTsex()}" class="center"></td>
+        <td th:text = "${usedtalent.getTcer()}" class="center"></td>
+        <td th:text = "${usedtalent.getTedu()}" class="center"></td>
+        <td th:text = "${usedtalent.getTpro()}" class="center"></td>
+        <td th:text = "${usedtalent.getEtime()}" class="center"></td>
+        <td th:text = "${usedtalent.getEsco()}" class="center"></td>
+       </tr>
                         
       </table>
     
  </div>
 </section>
 </body>
+<script th:src="@{/js/jquery-2.1.1.min.js}"></script>
+<script th:src="@{/js/avalon.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/myscript.js}"></script>
 </html>

@@ -13,9 +13,7 @@ public class contract {
 
     private String cother;
 
-    public Integer getCid() {
-        return cid;
-    }
+    public Integer getCid() { return cid; }
 
     public void setCid(Integer cid) {
         this.cid = cid;

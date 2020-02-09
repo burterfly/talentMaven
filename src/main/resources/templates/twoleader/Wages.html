@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html  xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8"/>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title>后台管理系统</title>
 <meta name="author" content="DeathGhost" />
 <link rel="stylesheet" type="text/css" href="/twoleader/css/style.css">
@@ -83,24 +83,12 @@
         <th>公司名称</th>
         <th>职务</th>
         <th>工资</th>        
-       </tr>      
-       <tr>
-        <td class="center">2015/5/6</td>
-        <td class="center">人民银行</td>
-        <td class="center">柜员</td>
-        <td class="center">5000</td>
        </tr>
-       <tr>
-        <td class="center">2015/5/6</td>
-        <td class="center">人民银行</td>
-        <td class="center">柜员</td>
-        <td class="center">5000</td>
-       </tr>
-      <tr>
-        <td class="center">2015/5/6</td>
-        <td class="center">人民银行</td>
-        <td class="center">柜员</td>
-        <td class="center">5000</td>
+       <tr th:each="money:${listmoney}">
+        <td th:text = "${money.getMtime()}" class="center"></td>
+        <td th:text = "${money.getBname()}" class="center"></td>
+        <td th:text = "${money.getMjob()}" class="center"></td>
+        <td th:text = "${money.getMmoney()}" class="center"></td>
        </tr>
        
       </table>
@@ -116,4 +104,8 @@
  </div>
 </section>
 </body>
+<script th:src="@{/js/jquery-2.1.1.min.js}"></script>
+<script th:src="@{/js/avalon.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/myscript.js}"></script>
 </html>

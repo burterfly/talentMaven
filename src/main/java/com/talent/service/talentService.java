@@ -20,7 +20,7 @@ public class talentService {
 
 
     //查询指定人才列表
-    public List<talent> listTalent(Integer tid)
+    public talent listTalent(Integer tid)
     {
    //     System.out.println("Service层===========>ok");
         return talentmapper.listTalent(tid);

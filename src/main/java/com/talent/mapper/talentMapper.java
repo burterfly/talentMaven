@@ -14,7 +14,7 @@ import java.util.Map;
 @Component
 public interface talentMapper {
     //查询指定用户列表
-    List<talent> listTalent(Integer tid);
+    talent listTalent(Integer tid);
 
     //查询指定用户履职经历列表
     List<experience> listExperience(Integer tid);

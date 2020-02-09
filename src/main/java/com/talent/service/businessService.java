@@ -3,6 +3,7 @@ package com.talent.service;
 import com.talent.entity.business;
 import com.talent.entity.contract;
 import com.talent.entity.talent;
+import com.talent.entity.usedtalent;
 import com.talent.mapper.businessMapper;
 import com.talent.mapper.talentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class businessService {
     private businessMapper businessmapper;
 
     //查询指定公司列表
-    public List<business> listBusiness(Integer bid)
+    public business listBusiness(Integer bid)
     {
         //     System.out.println("Service层===========>ok");
         return businessmapper.listBusiness(bid);
@@ -29,7 +30,7 @@ public class businessService {
     }
 
     //查询指定公司雇佣人才
-    public List<talent> listUsedTalent(Integer bid)
+    public List<usedtalent> listUsedTalent(Integer bid)
     {
         return businessmapper.listUsedTalent(bid);
     }

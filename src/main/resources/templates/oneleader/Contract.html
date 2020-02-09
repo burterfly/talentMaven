@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html  xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8"/>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title>后台管理系统</title>
 <meta name="author" content="DeathGhost" />
 <link rel="stylesheet" type="text/css" href="/twoleader/css/style.css">
@@ -75,14 +75,18 @@
          <th style="width: 70px; ">名称</th>
         <th style="width: 70px; ">详情</th>
        </tr>
-       <tr>
-        <td class="center">1</td>                                 
-        <td class="center">2015/8-2015/9人才派遣合同</td>               
-        <td class="center">详情</td>
+       <tr th:each="contract:${listcontract}">
+        <td th:text = "${contract.getCid()}" class="center"></td>
+        <td th:text = "${contract.getCname()}" class="center"></td>
+        <td th:text = "${contract.getCcontent()}" class="center"></td>
        </tr>
       </table>
 
  </div>
 </section>
 </body>
+<script th:src="@{/js/jquery-2.1.1.min.js}"></script>
+<script th:src="@{/js/avalon.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/myscript.js}"></script>
 </html>

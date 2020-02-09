@@ -1,15 +1,12 @@
 package com.talent.Controller;
-
 import com.talent.entity.business;
 import com.talent.entity.contract;
-import com.talent.entity.talent;
+import com.talent.entity.usedtalent;
 import com.talent.service.businessService;
-import com.talent.service.talentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -21,45 +18,26 @@ public class BusinessController {
     private businessService businessservice;
 
     @RequestMapping(value = {"/listBusiness"})
-    public String listBusiness(Integer bid, HttpSession session){
-        List<business> listbusiness=businessservice.listBusiness(bid);
-        session.setAttribute("listbusiness", listbusiness);
-
- //              for(int i=0;i<listbusiness.size();i++)//                                   {
- //              {
- //                  String a=listbusiness.get(i).getBname();
- //                       System.out.println(a);
- //                                          }
+    public String listBusiness(Integer bid, Model model){
+        business listbusiness=businessservice.listBusiness(bid);
+        model.addAttribute("listbusiness", listbusiness);
         return "oneleader/Company_information";
     }
 
 
     @RequestMapping(value = {"/listContract"})
-    public String listContract(Integer bid, HttpSession session)
+    public String listContract(Integer bid,Model model)
     {
         List<contract> listcontract=businessservice.listContract(bid);
-        session.setAttribute("listcontract", listcontract);
-
-  //      for(int i=0;i<listcontract.size();i++)//                                   {
-  //                        {
-  //                             String a=listcontract.get(i).getCname();
-  //                             System.out.println(a);
-  //                          }
+        model.addAttribute("listcontract", listcontract);
         return "oneleader/Contract";
     }
 
     @RequestMapping(value = {"/listUsedTalent"})
-    public String listUsedTalent(Integer bid, HttpSession session)
+    public String listUsedTalent(Integer bid, Model model)
     {
-        List<talent> listusedtalent=businessservice.listUsedTalent(bid);
-        session.setAttribute("listusedtalent", listusedtalent);
-
-        for(int i=0;i<listusedtalent.size();i++)
-           {
-             String a=listusedtalent.get(i).getTname();
-              System.out.println(a);
-                 }
-
+        List<usedtalent> listusedtalent=businessservice.listUsedTalent(bid);
+        model.addAttribute("listusedtalent", listusedtalent);
         return "oneleader/Talent_information";
     }
 

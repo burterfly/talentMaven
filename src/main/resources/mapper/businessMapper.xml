@@ -164,7 +164,7 @@
     	</select>
 
   <!--  //查询指定公司派遣人才 -->
-  <select id="listUsedTalent" resultType="talent">
+  <select id="listUsedTalent" resultType="usedtalent">
     	   select * from talent,experience where talent.Tid=experience.Tid and experience.Bid=#{bid}
     	</select>
 

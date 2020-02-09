@@ -11,6 +11,10 @@ public class money {
 
     private String mmoney;
 
+    private String mjob;
+
+    private String bname;
+
     private String mother;
 
     public Integer getMid() {
@@ -51,6 +55,22 @@ public class money {
 
     public void setMmoney(String mmoney) {
         this.mmoney = mmoney == null ? null : mmoney.trim();
+    }
+
+    public String getMjob() {
+        return mjob;
+    }
+
+    public void setMjob(String  mjob) {
+        this. mjob =  mjob == null ? null :  mjob.trim();
+    }
+
+    public String getBname() {
+        return bname;
+    }
+
+    public void setBname(String bname) {
+        this.bname = bname == null ? null : bname.trim();
     }
 
     public String getMother() {
