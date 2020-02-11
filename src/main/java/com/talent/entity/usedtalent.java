@@ -101,14 +101,23 @@ public class usedtalent {
         this.etime = etime;
     }
 
-    public String getEsco() {
+    public Integer getEsco() {
         return esco;
     }
 
-    public void setEsco(String esco) {
+    public void setEsco(Integer esco) {
         this.esco = esco;
     }
 
     private String etime;
-    private String esco;
+    private Integer esco;
+    private Integer eid;
+
+    public Integer getEid() {
+        return eid;
+    }
+
+    public void setEid(Integer eid) {
+        this.eid = eid;
+    }
 }

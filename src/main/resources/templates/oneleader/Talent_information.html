@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org">
+<html  xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title>后台管理系统</title>
@@ -34,7 +34,7 @@
 	})(jQuery);
 </script>
 </head>
-<body>
+<body ms-controller="viewmodel">
 <!--header-->
 <header>
  
@@ -54,25 +54,17 @@
      <dd><a href="../business/listBusiness?bid=1" >公司信息</a></dd>
     <dd><a href="../business/listContract?bid=1">合同管理</a></dd>
     <dd><a href="../business/listUsedTalent?bid=1"  class="active">聘用记录</a></dd>
-    <dd><a href="../business/Publish"   >发布招聘</a></dd>
+    <dd><a href="../business/Publish?bid=1">发布招聘</a></dd>
    </dl>
   </li> 
   </li>
  </ul>
 </aside>
-
-
       <section class="rt_wrap content mCustomScrollbar">
-      
-
       <div class="rt_content">
       <div class="page_title">
        <h2 class="fl">聘用记录</h2>     
       </div>
-
-   
-      
-      
       <table class="table">
        <tr>
         <th style="width: 70px; ">姓名</th>
@@ -84,26 +76,27 @@
         <th style="width: 70px; ">工作时间</th>  
          <th style="width: 70px; ">评分</th>      
        </tr>
-
-       <tr th:each="usedtalent:${listusedtalent}">
-        <td th:text = "${usedtalent.getTname()}" class="center"></td>
-        <td th:text = "${usedtalent.getTage()}" class="center"></td>
-        <td th:text = "${usedtalent.getTsex()}" class="center"></td>
-        <td th:text = "${usedtalent.getTcer()}" class="center"></td>
-        <td th:text = "${usedtalent.getTedu()}" class="center"></td>
-        <td th:text = "${usedtalent.getTpro()}" class="center"></td>
-        <td th:text = "${usedtalent.getEtime()}" class="center"></td>
-        <td th:text = "${usedtalent.getEsco()}" class="center"></td>
-
+       <tr  th:each="usedtalent:${listusedtalent}">
+        <td th:text = "${usedtalent.tname}" class="center"></td>
+        <td th:text = "${usedtalent.tage}" class="center"></td>
+        <td th:text = "${usedtalent.tsex}" class="center"></td>
+        <td th:text = "${usedtalent.tcer}" class="center"></td>
+        <td th:text = "${usedtalent.tedu}" class="center"></td>
+        <td th:text = "${usedtalent.tpro}" class="center"></td>
+        <td th:text = "${usedtalent.etime}" class="center"></td>
+        <td th:switch = "${usedtalent.esco != null }" >
+             <div th:case="true" th:text = "${usedtalent.esco}" class="center"></div>
+             <a  type="button"   ms-click="@score(1,2)" th:case="false" th:text = "待评分" class="center" ></a>
+        </td>
        </tr>
-                        
       </table>
-    
- </div>
+      </div>
 </section>
 </body>
+
+
 <script th:src="@{/js/jquery-2.1.1.min.js}"></script>
 <script th:src="@{/js/avalon.js}"></script>
 <script th:src="@{/js/bootstrap.min.js}"></script>
-<script th:src="@{/js/myscript.js}"></script>
+<script th:src="@{/js/twoleader.js}"></script>
 </html>

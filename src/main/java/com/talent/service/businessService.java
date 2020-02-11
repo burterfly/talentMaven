@@ -1,9 +1,6 @@
 package com.talent.service;
 
-import com.talent.entity.business;
-import com.talent.entity.contract;
-import com.talent.entity.talent;
-import com.talent.entity.usedtalent;
+import com.talent.entity.*;
 import com.talent.mapper.businessMapper;
 import com.talent.mapper.talentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,4 +32,21 @@ public class businessService {
         return businessmapper.listUsedTalent(bid);
     }
 
+    //插入评分
+    public Integer score(Integer eid,Integer esco)
+    {
+        return businessmapper.score(eid,esco);
+    }
+
+    //查询已发布信息
+    public List<experience> listpublic(Integer bid)
+    {
+        return businessmapper.listpublic(bid);
+    }
+
+    //删除已发布信息
+    public Integer deletePublic(Integer eid)
+    {
+        return businessmapper.deletePublic(eid);
+    }
 }

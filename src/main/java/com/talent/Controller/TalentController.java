@@ -1,14 +1,14 @@
 package com.talent.Controller;
-import com.talent.entity.contract;
-import com.talent.entity.experience;
-import com.talent.entity.money;
-import com.talent.entity.talent;
+import com.talent.entity.*;
 import com.talent.service.TalentService;
 import com.talent.service.businessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import java.util.List;
 
 
@@ -50,26 +50,27 @@ public class TalentController {
     }
 
     @RequestMapping(value = {"/listMoney"})
-    public String listMoney(Integer tid, Model model){
-        List<money> listmoney=talentservice.listMoney(tid);
-        for(int i=0;i<listmoney.size();i++)
-        {
-            Integer bid=listmoney.get(i).getBid();
+    public String listMoney(Integer tid, Model model) {
+        List<money> listmoney = talentservice.listMoney(tid);
+        for (int i = 0; i < listmoney.size(); i++) {
+            Integer bid = listmoney.get(i).getBid();
             String name;
-            name=businessservice.listBusiness(bid).getBname();
+            name = businessservice.listBusiness(bid).getBname();
             listmoney.get(i).setBname(name);
         }
         model.addAttribute("listmoney", listmoney);
         return "twoleader/Wages";
     }
+    //  @RequestMapping(value = {"/exit"})
 
     @RequestMapping(value = {"/now"})
     public String now(){
         return "twoleader/Now";
     }
 
-    @RequestMapping(value = {"/exit"})
+    @RequestMapping(value ="/exit", method = RequestMethod.GET)
     public String exit(){
+        System.out.println("测试一下实现跳转");
         return "foregro/login";
     }
 

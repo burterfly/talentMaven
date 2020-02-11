@@ -35,4 +35,20 @@
     	   select * from talent,experience where talent.Tid=experience.Tid and experience.Bid=#{bid}
     	</select>
 
+
+    <!--  //评分 -->
+    <update id="score" parameterType="com.talent.entity.usedtalent">
+  	    	update experience set Esco=#{esco}   where 	Eid= #{eid}
+	</update>
+
+    <!--  //查询已发布信息 -->
+    <select id="listpublic" resultType="experience">
+    	  select * from experience  where Tid is null  and Bid=#{bid}
+    	</select>
+
+
+    <!--  //删除已发布信息 -->
+    <delete id="deletePublic" parameterType="com.talent.entity.experience">
+    	  delete  from experience  where Eid= #{eid}
+    	</delete>
 </mapper>

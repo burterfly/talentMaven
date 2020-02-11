@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>后台管理系统</title>
+    <meta name="author" content="DeathGhost" />
+    <link rel="stylesheet" type="text/css" href="/twoleader/css/style.css">
+    <script src="/twoleader/js/html5.js"></script>
+    <script src="/twoleader/js/jquery.js"></script>
+    <script src="/twoleader/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script>
+        (function($){
+            $(window).load(function(){
+                $("a[rel='load-content']").click(function(e){
+                    e.preventDefault();
+                    var url=$(this).attr("href");
+                    $.get(url,function(data){
+                        $(".content .mCSB_container").append(data); //load new content inside .mCSB_container
+                        //scroll-to appended content
+                        $(".content").mCustomScrollbar("scrollTo","h2:last");
+                    });
+                });
+                $(".content").delegate("a[href='top']","click",function(e){
+                    e.preventDefault();
+                    $(".content").mCustomScrollbar("scrollTo",$(this).attr("href"));
+                });
+            });
+        })(jQuery);
+    </script>
+</head>
+<body>
+<header>
+    <h1><img src="/twoleader/images/admin_logo.png"/></h1>
+    <ul class="rt_nav">
+        <li><a href="#" class="admin_icon">人民银行</a></li>
+        <li><a href="../business/exit" class="quit_icon">安全退出</a></li>
+    </ul>
+</header>
+<div ms-controller='viewmodel'>
+<aside class="lt_aside_nav content mCustomScrollbar">
+    <ul>
+        <li>
+            <dl>
+                <dt>功能管理</dt>
+                <dd><a ms-click="@ClickMenu(0)" type='button' class="active">公司信息</a></dd>
+                <dd><a ms-click="@ClickMenu(1)" type='button' class="active">合同信息</a></dd>
+                <dd><a ms-click="@ClickMenu(2)" type='button' class="active">聘用记录</a></dd>
+                <dd><a ms-click="@ClickMenu(3)" type='button' class="active">发布招聘</a></dd>
+            </dl>
+        </li>
+        </li>
+    </ul>
+</aside>
+<div>
+    //企业信息展示
+    <section ms-visible="0==@curSectionIndex"  class="rt_wrap content mCustomScrollbar">
+        <div class="rt_content">
+            <div class="page_title">
+                <h2 class="fl">公司详情</h2>
+            </div>
+            <table class="table">
+                <tr>
+                    <th style="width: 70px; ">名称</th>
+                    <th style="width: 70px; ">办公地点</th>
+                    <th style="width: 70px; ">注册时间</th>
+                    <th style="width: 70px; ">主营业务</th>
+                </tr>
+                <tr>
+                    <td th:text = "${listbusiness.getBname()}" class="center" ></td>
+                    <td th:text = "${listbusiness.getBaddress()}" class="center" ></td>
+                    <td th:text = "${listbusiness.getBtime()}" class="center"></td>
+                    <td th:text = "${listbusiness.getBservice()}" class="center"></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    //企业合同管理
+    <section ms-visible="1==@curSectionIndex" class="rt_wrap content mCustomScrollbar">
+        <div class="rt_content">
+            <div class="page_title">
+                <h2 class="fl">合同管理</h2>
+            </div>
+            <table class="table">
+                <tr>
+                    <th style="width: 70px; ">编号</th>
+                    <th style="width: 70px; ">名称</th>
+                    <th style="width: 70px; ">详情</th>
+                </tr>
+                <tbody>
+                <tr ms-for="el in @contractList">
+                    <td >{{el.cid}}</td>
+                    <td >{{el.cname}}</td>
+                    <td >{{el.ccontent}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    //企业聘用记录
+    <section ms-visible="2==@curSectionIndex"class="rt_wrap content mCustomScrollbar">
+        <div class="rt_content">
+            <div class="page_title">
+                <h2 class="fl">聘用记录</h2>
+            </div>
+            <table class="table">
+                <tr>
+                    <th style="width: 70px; ">姓名</th>
+                    <th style="width: 70px; ">年龄</th>
+                    <th style="width: 70px; ">性别</th>
+                    <th style="width: 70px; ">资格证书</th>
+                    <th style="width: 70px; ">教育经历</th>
+                    <th style="width: 70px; ">业务技能</th>
+                    <th style="width: 70px; ">工作时间</th>
+                    <th style="width: 70px; ">评分</th>
+                </tr>
+                <tbody>
+                <tr ms-for="el in @talentList">
+                    <td th:text = "${el.bname}"></td>
+                    <td >{{el.tage}}</td>
+                    <td >{{el.tsex}}</td>
+                    <td >{{el.tcer}}</td>
+                    <td >{{el.tedu}}</td>
+                    <td >{{el.tpro}}</td>
+                    <td >{{el.etime}}</td>
+                    <td  th:switch = "false" >
+                        <a  type="button"   ms-click="@deletepublic(44)" th:case="false" th:text = "删除" class="center"></a>
+                        <a  type="button"   ms-click="@editpublic(1)" th:case="true" th:text = "增加" class="center"></a> 
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    //发布招聘
+    <section ms-visible="3==@curSectionIndex" class="rt_wrap content mCustomScrollbar">
+        <div class="rt_content">
+            <div class="page_title">
+                <h2 class="fl">发布招聘</h2>
+            </div>
+            <table class="table" >
+                <thead>
+                <tr>
+                    <th style="width: 70px; ">时间</th>
+                    <th style="width: 70px; ">公司名称</th>
+                    <th style="width: 70px; ">招聘职务</th>
+                    <th style="width: 70px; ">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ms-for="el in @publicList">
+                    <td >{{el.etime}}</td>
+                    <td >{{el.bname}}</td>
+                    <td >{{el.ejob}}</td>
+
+                </tr>
+                </tbody>
+                <!--      </tr>
+                   <tr th:each="public,iterStat:${listpublicList}">
+                       <td th:text = "${public.etime}" class="center"></td>
+                       <td th:text = "${public.bname}" class="center"></td>
+                       <td th:text = "${public.ejob}" class="center"></td>
+                    <td th:switch = "${iterStat.last}" >
+                              <a  type="button"   ms-click="@deletepublic(44)" th:case="false" th:text = "删除" class="center"></a>
+                           <a  type="button"   ms-click="@editpublic(1)" th:case="true" th:text = "增加" class="center"></a> 
+                       </td>
+                </tr>-->
+            </table>
+        </div>
+    </section>
+</div>
+</div>
+</body>
+<script th:src="@{/js/jquery-2.1.1.min.js}"></script>
+<script th:src="@{/js/avalon.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/oneleader.js}"></script>
+</html>

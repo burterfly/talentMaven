@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html   xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8"/>
     <title>后台管理系统</title>
@@ -33,31 +33,10 @@
             });
         })(jQuery);
     </script>
-
-
-    <script>
-        $(function(){
-            $("#btn2").click(function() {
-                $("#test tbody").append('<tr><td></td><td class="center">一号公司</td><td></td><td class="center">确定</td></tr>');
-            });
-        });
-    </script>
-
-    <script>
-        function changeEdit()
-        {
-            var B=document.getElementById('willChange');
-            var text=B.innerHTML;
-            B.innerHTML='<input value='+text+'></input>';
-        }
-    </script>
-
-
 </head>
-<body>
+<body ms-controller="viewmodel">
 <!--header-->
 <header>
-
     <h1><img src="/twoleader/images/admin_logo.png"/></h1>
     <ul class="rt_nav">
         <li><a href="#" class="admin_icon">人民银行</a></li>
@@ -74,25 +53,17 @@
                 <dd><a href="../business/listBusiness?bid=1" >公司信息</a></dd>
                 <dd><a href="../business/listContract?bid=1">合同管理</a></dd>
                 <dd><a href="../business/listUsedTalent?bid=1" >聘用记录</a></dd>
-                <dd><a href="../business/Publish"   class="active">发布招聘</a></dd>
+                <dd><a href="../business/Publish?bid=1"   class="active">发布招聘</a></dd>
             </dl>
         </li>
         </li>
     </ul>
 </aside>
-
-
 <section class="rt_wrap content mCustomScrollbar">
-
-
     <div class="rt_content">
         <div class="page_title">
             <h2 class="fl">发布招聘</h2>
         </div>
-
-
-
-
         <table class="table"  id = "test">
             <thead>
             <tr>
@@ -102,28 +73,22 @@
                 <th style="width: 70px; ">操作</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-
-                <td class="center"> <B id='willChange'>2015/6-2016/8</B></td>
-                <td class="center">一号公司</td>
-                <td class="center">柜员</td>
-                <td class="center"> <input type='button' value='点我' onclick='changeEdit()'></td>
             </tr>
-            <tr>
-                <td class="center">2015/6-2016/8</td>
-                <td class="center">一号公司</td>
-                <td class="center">柜员</td>
-                <td class="center"> <input type="button" id="btn2" value="增加"></td>
+            <tr th:each="public,iterStat:${listpublic}">
+                <td th:text = "${public.etime}" class="center"></td>
+                <td th:text = "${public.bname}" class="center"></td>
+                <td th:text = "${public.ejob}" class="center"></td>
+                <td th:switch = "${iterStat.last}" >
+                       <a  type="button"   ms-click="@deletepublic(44)" th:case="false" th:text = "删除" class="center"></a>
+                       <a  type="button"   ms-click="@editpublic(1)" th:case="true" th:text = "增加" class="center"></a> 
+                </td>
             </tr>
-            </tbody>
         </table>
-
-
-
-
-
     </div>
 </section>
 </body>
+<script th:src="@{/js/jquery-2.1.1.min.js}"></script>
+<script th:src="@{/js/avalon.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/twoleader.js}"></script>
 </html>
