@@ -72,6 +72,7 @@
     </set>
     where Sid = #{sid,jdbcType=INTEGER}
   </update>
+
   <update id="updateByPrimaryKey" parameterType="com.talent.entity.staff" >
     update staff
     set Susername = #{susername,jdbcType=VARCHAR},

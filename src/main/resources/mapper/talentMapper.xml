@@ -172,6 +172,7 @@
     where Tid = #{tid,jdbcType=INTEGER}
   </update>
 
+
   <select id="listAllBusiness" resultType="business">
     	  select * from business
     	</select>

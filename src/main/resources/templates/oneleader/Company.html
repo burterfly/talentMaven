@@ -27,6 +27,20 @@
             });
         })(jQuery);
     </script>
+    <style>
+        table tbody {
+            display: block;
+            height: 480px;
+            overflow-y: scroll;
+        }
+        table thead,
+        tbody tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+        table thead {width: calc(100% - 1em)}
+    </style>
 </head>
 <body>
 <header>
@@ -42,29 +56,30 @@
         <li>
             <dl>
                 <dt>功能管理</dt>
-                <dd><a ms-click="@ClickMenu(0)" type='button' class="active">公司信息</a></dd>
-                <dd><a ms-click="@ClickMenu(1)" type='button' class="active">合同信息</a></dd>
-                <dd><a ms-click="@ClickMenu(2)" type='button' class="active">聘用记录</a></dd>
-                <dd><a ms-click="@ClickMenu(3)" type='button' class="active">发布招聘</a></dd>
+                <dd><a ms-click="@ClickMenu(0)" type='button' >公司信息</a></dd>
+                <dd><a ms-click="@ClickMenu(1)" type='button' >合同信息</a></dd>
+                <dd><a ms-click="@ClickMenu(2)" type='button' >聘用记录</a></dd>
+                <dd><a ms-click="@ClickMenu(3)" type='button' >发布招聘</a></dd>
             </dl>
         </li>
         </li>
     </ul>
 </aside>
 <div>
-    //企业信息展示
     <section ms-visible="0==@curSectionIndex"  class="rt_wrap content mCustomScrollbar">
         <div class="rt_content">
             <div class="page_title">
                 <h2 class="fl">公司详情</h2>
             </div>
-            <table class="table">
+            <table class="table" >
+                <thead>
                 <tr>
                     <th style="width: 70px; ">名称</th>
                     <th style="width: 70px; ">办公地点</th>
                     <th style="width: 70px; ">注册时间</th>
                     <th style="width: 70px; ">主营业务</th>
                 </tr>
+                <thead>
                 <tr>
                     <td th:text = "${listbusiness.getBname()}" class="center" ></td>
                     <td th:text = "${listbusiness.getBaddress()}" class="center" ></td>
@@ -74,19 +89,19 @@
             </table>
         </div>
     </section>
-
-    //企业合同管理
     <section ms-visible="1==@curSectionIndex" class="rt_wrap content mCustomScrollbar">
         <div class="rt_content">
             <div class="page_title">
                 <h2 class="fl">合同管理</h2>
             </div>
             <table class="table">
+                <thead>
                 <tr>
                     <th style="width: 70px; ">编号</th>
                     <th style="width: 70px; ">名称</th>
                     <th style="width: 70px; ">详情</th>
                 </tr>
+                </thead>
                 <tbody>
                 <tr ms-for="el in @contractList">
                     <td >{{el.cid}}</td>
@@ -97,14 +112,13 @@
             </table>
         </div>
     </section>
-
-    //企业聘用记录
     <section ms-visible="2==@curSectionIndex"class="rt_wrap content mCustomScrollbar">
         <div class="rt_content">
             <div class="page_title">
                 <h2 class="fl">聘用记录</h2>
             </div>
             <table class="table">
+                <thead>
                 <tr>
                     <th style="width: 70px; ">姓名</th>
                     <th style="width: 70px; ">年龄</th>
@@ -115,27 +129,25 @@
                     <th style="width: 70px; ">工作时间</th>
                     <th style="width: 70px; ">评分</th>
                 </tr>
+                </thead>
                 <tbody>
                 <tr ms-for="el in @talentList">
-                    <td th:text = "${el.bname}"></td>
+                    <td >{{el.tname}}</td>
                     <td >{{el.tage}}</td>
                     <td >{{el.tsex}}</td>
                     <td >{{el.tcer}}</td>
                     <td >{{el.tedu}}</td>
                     <td >{{el.tpro}}</td>
                     <td >{{el.etime}}</td>
-                    <td  th:switch = "false" >
-                        <a  type="button"   ms-click="@deletepublic(44)" th:case="false" th:text = "删除" class="center"></a>
-                        <a  type="button"   ms-click="@editpublic(1)" th:case="true" th:text = "增加" class="center"></a> 
-                    </td>
-
+                     <td  ms-if="el.esco==null">
+                         <a  type="button"  ms-click="@score(1,el.eid)"  th:text = "待评分" class="center" ></a>
+                     </td>
+                       <td ms-if="el.esco!=null">{{el.esco}}</td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </section>
-
-    //发布招聘
     <section ms-visible="3==@curSectionIndex" class="rt_wrap content mCustomScrollbar">
         <div class="rt_content">
             <div class="page_title">
@@ -151,24 +163,22 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ms-for="el in @publicList">
+                <tr ms-for="($index, el) in @publicList">
                     <td >{{el.etime}}</td>
                     <td >{{el.bname}}</td>
                     <td >{{el.ejob}}</td>
+                    <td  ms-if="($index+1)!=@publicList.length">
+                        <a  type="button"   ms-click="@deletepublic(el.eid)"  th:text = "删除" class="center" ></a>
+                    </td>
+                    <td  ms-if="($index+1)==@publicList.length">
+                        <a  type="button"   ms-click="@deletepublic(el.eid)"  th:text = "删除" class="center" ></a>
 
+                        <a  type="button"   ms-click="@editpublic(el.eid)"    th:text = "新增" class="center" ></a>
+                    </td>
                 </tr>
                 </tbody>
-                <!--      </tr>
-                   <tr th:each="public,iterStat:${listpublicList}">
-                       <td th:text = "${public.etime}" class="center"></td>
-                       <td th:text = "${public.bname}" class="center"></td>
-                       <td th:text = "${public.ejob}" class="center"></td>
-                    <td th:switch = "${iterStat.last}" >
-                              <a  type="button"   ms-click="@deletepublic(44)" th:case="false" th:text = "删除" class="center"></a>
-                           <a  type="button"   ms-click="@editpublic(1)" th:case="true" th:text = "增加" class="center"></a> 
-                       </td>
-                </tr>-->
             </table>
+
         </div>
     </section>
 </div>

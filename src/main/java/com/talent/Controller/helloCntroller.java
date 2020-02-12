@@ -45,13 +45,15 @@ public class helloCntroller {
     public List<business> data() {
         List<business> allbusiness = talentService.listAllBusiness();
         //     model.addAttribute("allbusiness", allbusiness);
-        System.out.println("显示所有公司"+allbusiness.size());
+        System.out.println("测试一下显示所有公司"+allbusiness.size());
         return allbusiness;
     }
 
     @RequestMapping(value = "/data1", method = RequestMethod.GET)
     @ResponseBody
     public List<User> data1() {
+
+        System.out.println("测试一下实现跳转");
         List<User> list = new ArrayList<User>();
 
         for (int i = 0; i < 10; i++) {

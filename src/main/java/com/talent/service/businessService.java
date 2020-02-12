@@ -49,4 +49,9 @@ public class businessService {
     {
         return businessmapper.deletePublic(eid);
     }
+
+    //插入发布招聘信息
+    public Integer editpublic(experience experience){
+        System.out.println("sercice层："+experience.getEjob());
+        return businessmapper.editpublic(experience); }
 }

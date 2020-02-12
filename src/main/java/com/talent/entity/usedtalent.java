@@ -112,6 +112,15 @@ public class usedtalent {
     private String etime;
     private Integer esco;
     private Integer eid;
+    private Integer bid;
+
+    public Integer getBid() {
+        return bid;
+    }
+
+    public void setBid(Integer bid) {
+        this.bid = bid;
+    }
 
     public Integer getEid() {
         return eid;

@@ -2,7 +2,6 @@ package com.talent.service;
 
 import com.talent.entity.contract;
 import com.talent.mapper.staffMapper;
-import com.talent.mapper.talentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -27,4 +27,7 @@ public interface businessMapper {
 
     //删除已发布信息
     Integer deletePublic(Integer eid);
+
+    //插入发布招聘信息
+    Integer editpublic(experience experience);
 }

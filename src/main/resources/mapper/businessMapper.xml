@@ -51,4 +51,12 @@
     <delete id="deletePublic" parameterType="com.talent.entity.experience">
     	  delete  from experience  where Eid= #{eid}
     	</delete>
+
+
+    <!--  //插入招聘信息 -->
+    <insert id="editpublic" parameterType="com.talent.entity.experience"  >
+         insert experience (Bid,Etime,Ejob)
+	     value
+		(#{bid},#{etime},#{ejob})
+    	</insert>
 </mapper>
