@@ -11,10 +11,8 @@
  <script src="/twoleader/js/jquery.js"></script>
  <script src="/twoleader/js/jquery.mCustomScrollbar.concat.min.js"></script>
  <script>
-
   (function($){
    $(window).load(function(){
-
     $("a[rel='load-content']").click(function(e){
      e.preventDefault();
      var url=$(this).attr("href");
@@ -76,7 +74,6 @@
         <th style="width: 70px; ">综合评分</th>
         <th style="width: 70px; ">操作</th>
        </tr>
-
         <tr>
          <td th:text = "${listtalent.getTname()}" class="center" ></td>
          <td th:text = "${listtalent.getTage()}" class="center" ></td>
@@ -87,9 +84,7 @@
          <td th:text = "${listtalent.getTsco()}" class="center"></td>
          <td class="center">修改</td>
         </tr>
-
       </table>
-
  </div>
 </section>
 </body>

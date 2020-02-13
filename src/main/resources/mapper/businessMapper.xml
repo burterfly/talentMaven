@@ -17,17 +17,14 @@
     Bid, Busername, Bpassword, Bname, Baddress, Btime, Bservice, Bphoto, Bjob, Bother
   </sql>
 
+
   <!--  //查询指定公司列表 -->
   <select id="listAllBusiness" resultType="business">
     	  select * from business
     	</select>
+
   <select id="listBusiness" resultType="business">
     	  select * from business  where Bid=#{bid}
-    	</select>
-
-  <!--  //查询指定公司合同列表 -->
-  <select id="listContract" resultType="contract">
-    	  select * from contract  where Bid=#{bid}
     	</select>
 
   <!--  //查询指定公司派遣人才 -->
@@ -35,28 +32,4 @@
     	   select * from talent,experience where talent.Tid=experience.Tid and experience.Bid=#{bid}
     	</select>
 
-
-    <!--  //评分 -->
-    <update id="score" parameterType="com.talent.entity.usedtalent">
-  	    	update experience set Esco=#{esco}   where 	Eid= #{eid}
-	</update>
-
-    <!--  //查询已发布信息 -->
-    <select id="listpublic" resultType="experience">
-    	  select * from experience  where Tid is null  and Bid=#{bid}
-    	</select>
-
-
-    <!--  //删除已发布信息 -->
-    <delete id="deletePublic" parameterType="com.talent.entity.experience">
-    	  delete  from experience  where Eid= #{eid}
-    	</delete>
-
-
-    <!--  //插入招聘信息 -->
-    <insert id="editpublic" parameterType="com.talent.entity.experience"  >
-         insert experience (Bid,Etime,Ejob)
-	     value
-		(#{bid},#{etime},#{ejob})
-    	</insert>
 </mapper>

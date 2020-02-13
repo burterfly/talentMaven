@@ -173,9 +173,6 @@
   </update>
 
 
-  <select id="listAllBusiness" resultType="business">
-    	  select * from business
-    	</select>
 
   <!--  //查询指定用户列表 -->
   <select id="listAllTalent" resultType="talent">
@@ -187,20 +184,10 @@
     	  select * from talent  where Tid=#{tid}
     	</select>
 
-  <!--  //查询指定用户履职经历列表 -->
-  <select id="listExperience" resultType="experience">
-    	  select * from experience  where Tid=#{tid}
-    	</select>
 
-  <!--  //查询指定用户履职经历列表 -->
-  <select id="listMoney" resultType="money">
-    	  select * from money  where Tid=#{tid}
-    	</select>
 
-  <!--  //查询指定用户合同列表 -->
-  <select id="listContract" resultType="contract">
-    	  select * from contract  where Tid=#{tid}
-    	</select>
+
+
 
 
 </mapper>

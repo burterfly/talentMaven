@@ -2,7 +2,7 @@ package com.talent.service;
 
 
 import com.talent.entity.*;
-import com.talent.mapper.talentMapper;
+import com.talent.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +14,19 @@ public class TalentService {
 
     @Autowired
     private talentMapper talentmapper;
+    @Autowired
+    private businessMapper businessmapper;
+    @Autowired
+    private moneyMapper moneymapper;
+    @Autowired
+    private tcontractMapper tcontractmapper;
+    @Autowired
+    private experienceMapper experiencemapper;
 
     //查询所有公司列表
     public List<business> listAllBusiness()
     {
-        return talentmapper.listAllBusiness();
+        return businessmapper.listAllBusiness();
     }
 
     //查询所有人才列表
@@ -36,19 +44,19 @@ public class TalentService {
     //查询指定人才履职经历
     public List<experience> listExperience(Integer tid)
     {
-        return talentmapper.listExperience(tid);
+        return experiencemapper.listExperience(tid);
     }
 
     //查询指定人才工资
     public List<money> listMoney(Integer tid)
     {
-        return talentmapper.listMoney(tid);
+        return moneymapper.listMoney(tid);
     }
 
     //查询指定人才合同
-    public List<contract> listContract(Integer tid)
+    public List<tcontract> listTContract(Integer tid)
     {
-        return talentmapper.listContract(tid);
+        return tcontractmapper.listTContract(tid);
     }
 
 }

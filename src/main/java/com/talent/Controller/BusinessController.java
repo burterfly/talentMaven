@@ -18,14 +18,6 @@ public class BusinessController {
     @Autowired
     private businessService businessservice;
 //----------------------------展示企业信息------------------
-//    @RequestMapping(value = {"/listBusiness"})
-//    public String listBusiness(Integer bid, Model model){
-//        business listbusiness=businessservice.listBusiness(bid);
-//        model.addAttribute("listbusiness", listbusiness);
-//        return "oneleader/Company";
-     //   return "oneleader/Company_information";
-//    }
-
     @RequestMapping(value = {"/listBusiness"}, method = RequestMethod.GET)
     public String listBusiness(Integer bid,Model model){
         System.out.println(bid);
@@ -34,16 +26,7 @@ public class BusinessController {
         System.out.println("显示企业信息"+listbusiness.getBname());
         return "oneleader/Company";
     }
-
 //------------合同----------------------------------
-//    @RequestMapping(value = {"/listContract"})
-//    public String listContract(Integer bid,Model model)
-//    {
-//        List<contract> listcontract=businessservice.listContract(bid);
-//        model.addAttribute("listcontract", listcontract);
-//        return "oneleader/Contract";
-//    }
-
     @RequestMapping(value = {"/listContract"}, method = RequestMethod.GET)
     @ResponseBody
     public List<contract> listContract(Integer bid){
@@ -53,15 +36,6 @@ public class BusinessController {
     }
 
     //-------------------------聘用记录--------------------
-
- //   @RequestMapping(value = {"/listUsedTalent"})
-//    public String listUsedTalent(Integer bid, Model model)
-//    {
-//        List<usedtalent> listusedtalent=businessservice.listUsedTalent(bid);
-//        model.addAttribute("listusedtalent", listusedtalent);
-//        return "oneleader/Talent_information";
-//   }
-
     @RequestMapping(value = {"/listUsedTalent"}, method = RequestMethod.GET)
     @ResponseBody
     public List<usedtalent> listUsedTalent(Integer bid){
@@ -71,21 +45,6 @@ public class BusinessController {
         return listusedtalent;
     }
 //------------------展示招聘------------------------------
-
- //  @RequestMapping(value = {"/Publish"})
- //  public String Publish(Integer bid,Model model)
- //   {
- //       System.out.println(bid);
- //       List<experience> listpublic=businessservice.listpublic(bid);
- //       for (int i = 0; i < listpublic.size(); i++) {
- //           String name;
- //           name = businessservice.listBusiness(bid).getBname();
- //           listpublic.get(i).setBname(name);
-//        }
-//        model.addAttribute("listpublic", listpublic);
- //       return "oneleader/Publish";
- //   }
-
     @RequestMapping(value = {"/Publish"}, method = RequestMethod.GET)
     @ResponseBody
     public List<experience> Publish(Integer bid){
@@ -99,17 +58,6 @@ public class BusinessController {
         return listpublic;
     }
 //----------------------------增加招聘信息--------------------------------
-//    @RequestMapping(value = {"/editPublish"}, method = RequestMethod.POST)
-//    public String editPublish(Integer bid,String etime,String ejob,Model model)
-//    {
-//        System.out.println(bid);
-//        System.out.println(etime);
-//        System.out.println(ejob);
-//        List<experience> listpublic=businessservice.listpublic(bid);
-//        model.addAttribute("listpublic", listpublic);
-//       return "oneleader/Publish";
-//    }
-
     @RequestMapping(value = {"/editpublish"}, method = RequestMethod.GET)
     @ResponseBody
     public List<experience> editpublish(Integer bid,String etime,String ejob){
@@ -130,17 +78,6 @@ public class BusinessController {
         return listpublic;
     }
 //-------------------------评分----------------------------------
- //   @RequestMapping(value = {"/score"}, method = RequestMethod.GET)
- //   public String score(Integer bid,Integer eid,Integer esco,Model model){
- //       System.out.println(bid);
- //       System.out.println(eid);
- //       System.out.println(esco);
- //       businessservice.score(eid,esco);
- //       List<usedtalent> listusedtalent=businessservice.listUsedTalent(bid);
- //       model.addAttribute("listusedtalent", listusedtalent);
- //       return "oneleader/Talent_information";
- //   }
-
     @RequestMapping(value = {"/score"}, method = RequestMethod.GET)
     @ResponseBody
     public List<usedtalent> score(Integer bid,Integer eid,Integer esco){
@@ -154,18 +91,6 @@ public class BusinessController {
     }
 
 //-----------------------删除招聘信息-----------------------------
- //    @RequestMapping(value = {"/deletePublish"}, method = RequestMethod.GET)
- //   public String deletePublish(Integer bid,Integer eid,Model model)
- //   {
- //       System.out.println("测试一下");
- //       System.out.println(bid);
- //       System.out.println(eid);
- //       businessservice.deletePublic(eid);
- //       List<experience> listpublic=businessservice.listpublic(bid);
- //       model.addAttribute("listpublic", listpublic);
- //       return "oneleader/Publish";
- //   }
-
     @RequestMapping(value = {"/deletePublish"}, method = RequestMethod.GET)
     @ResponseBody
     public List<experience> deletePublish(Integer bid,Integer eid){

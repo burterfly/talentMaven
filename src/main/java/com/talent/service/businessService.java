@@ -2,6 +2,8 @@ package com.talent.service;
 
 import com.talent.entity.*;
 import com.talent.mapper.businessMapper;
+import com.talent.mapper.contractMapper;
+import com.talent.mapper.experienceMapper;
 import com.talent.mapper.talentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,19 +14,18 @@ public class businessService {
 
     @Autowired
     private businessMapper businessmapper;
+    @Autowired
+    private contractMapper contractmapper;
+    @Autowired
+    private talentMapper talentmapper;
+    @Autowired
+    private experienceMapper experiencemapper;
 
     //查询指定公司列表
-    public business listBusiness(Integer bid)
-    {
-        //     System.out.println("Service层===========>ok");
-        return businessmapper.listBusiness(bid);
-    }
+    public business listBusiness(Integer bid) { return businessmapper.listBusiness(bid); }
 
     //查询指定公司合同
-    public List<contract> listContract(Integer bid)
-    {
-        return businessmapper.listContract(bid);
-    }
+    public List<contract> listContract(Integer bid) { return contractmapper.listContract(bid); }
 
     //查询指定公司雇佣人才
     public List<usedtalent> listUsedTalent(Integer bid)
@@ -35,23 +36,21 @@ public class businessService {
     //插入评分
     public Integer score(Integer eid,Integer esco)
     {
-        return businessmapper.score(eid,esco);
+        return experiencemapper.score(eid,esco);
     }
 
     //查询已发布信息
     public List<experience> listpublic(Integer bid)
     {
-        return businessmapper.listpublic(bid);
+        return experiencemapper.listpublic(bid);
     }
 
     //删除已发布信息
     public Integer deletePublic(Integer eid)
     {
-        return businessmapper.deletePublic(eid);
+        return experiencemapper.deletePublic(eid);
     }
 
     //插入发布招聘信息
-    public Integer editpublic(experience experience){
-        System.out.println("sercice层："+experience.getEjob());
-        return businessmapper.editpublic(experience); }
+    public Integer editpublic(experience experience){ return experiencemapper.editpublic(experience); }
 }

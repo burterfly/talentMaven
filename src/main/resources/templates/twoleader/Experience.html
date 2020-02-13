@@ -33,6 +33,21 @@
 		});
 	})(jQuery);
 </script>
+    <style>
+        table tbody {
+            display: block;
+            height: 480px;
+            overflow-y: auto;
+            overflow-x:hidden;
+        }
+        table thead,
+        tbody tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+        table thead {width: calc(100% - 1em)}
+    </style>
 </head>
 <body>
 <!--header-->
@@ -74,31 +89,24 @@
       </section>    
        
       <table class="table">
+          <thead>
        <tr>
         <th>时间</th>
         <th>公司</th>
         <th>职务</th>
         <th>评分</th>      
        </tr>
+       </thead>
+          <tbody>
+
           <tr th:each="experience:${listexperience}">
               <td th:text = "${experience.getEtime()}" class="center"></td>
               <td th:text = "${experience.getEother()}" class="center"></td>
               <td th:text = "${experience.getEjob()}" class="center"></td>
               <td th:text = "${experience.getEsco()}" class="center"></td>
           </tr>
+          </tbody>
       </table>
-
-
-
-      <aside class="paging">
-       <a>第一页</a>
-       <a>1</a>
-       <a>2</a>
-       <a>3</a>
-       <a>…</a>
-       <a>1004</a>
-       <a>最后一页</a>
-      </aside>
  </div>
 </section>
 </body>

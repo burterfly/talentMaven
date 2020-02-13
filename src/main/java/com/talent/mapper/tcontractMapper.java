@@ -1,12 +1,13 @@
 package com.talent.mapper;
-
 import com.talent.entity.tcontract;
-
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
 
+@Mapper
+@Component
 public interface tcontractMapper {
-    int insert(tcontract record);
-    int insertSelective(tcontract record);
+    //查询指定用户合同列表
+    List<tcontract> listTContract(Integer tid);
 
 }

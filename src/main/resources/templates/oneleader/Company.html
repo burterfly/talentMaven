@@ -104,9 +104,9 @@
                 </thead>
                 <tbody>
                 <tr ms-for="el in @contractList">
-                    <td >{{el.cid}}</td>
-                    <td >{{el.cname}}</td>
-                    <td >{{el.ccontent}}</td>
+                    <td class="center">{{$index+1}}</td>
+                    <td class="center">{{el.cname}}</td>
+                    <td class="center">{{el.ccontent}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -156,21 +156,21 @@
             <table class="table" >
                 <thead>
                 <tr>
-                    <th style="width: 70px; ">时间</th>
+                    <th style="width: 69.9px; ">时间</th>
                     <th style="width: 70px; ">公司名称</th>
-                    <th style="width: 70px; ">招聘职务</th>
-                    <th style="width: 70px; ">操作</th>
+                    <th style="width: 69.9px; ">招聘职务</th>
+                    <th style="width: 73px; ">操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ms-for="($index, el) in @publicList">
-                    <td >{{el.etime}}</td>
-                    <td >{{el.bname}}</td>
-                    <td >{{el.ejob}}</td>
-                    <td  ms-if="($index+1)!=@publicList.length">
+                    <td class="center">{{el.etime}}</td>
+                    <td class="center">{{el.bname}}</td>
+                    <td class="center">{{el.ejob}}</td>
+                    <td class="center" ms-if="($index+1)!=@publicList.length">
                         <a  type="button"   ms-click="@deletepublic(el.eid)"  th:text = "删除" class="center" ></a>
                     </td>
-                    <td  ms-if="($index+1)==@publicList.length">
+                    <td class="center" ms-if="($index+1)==@publicList.length">
                         <a  type="button"   ms-click="@deletepublic(el.eid)"  th:text = "删除" class="center" ></a>
 
                         <a  type="button"   ms-click="@editpublic(el.eid)"    th:text = "新增" class="center" ></a>

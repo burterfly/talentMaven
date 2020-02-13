@@ -72,7 +72,6 @@
     </set>
     where Sid = #{sid,jdbcType=INTEGER}
   </update>
-
   <update id="updateByPrimaryKey" parameterType="com.talent.entity.staff" >
     update staff
     set Susername = #{susername,jdbcType=VARCHAR},
@@ -83,8 +82,4 @@
 
 
 
-  <!--  //查询合同列表 -->
-  <select id="listContract" resultType="contract">
-    	  select * from contract
-    	</select>
 </mapper>

@@ -1,15 +1,12 @@
 package com.talent.mapper;
-
 import com.talent.entity.money;
-
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
 
+@Mapper
+@Component
 public interface moneyMapper {
-    int deleteByPrimaryKey(Integer mid);
-    int insert(money record);
-    int insertSelective(money record);
-    money selectByPrimaryKey(Integer mid);
-    int updateByPrimaryKeySelective(money record);
-    int updateByPrimaryKey(money record);
+    //查询指定用户工资列表
+    List<money> listMoney(Integer tid);
 }

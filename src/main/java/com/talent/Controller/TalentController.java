@@ -30,7 +30,7 @@ public class TalentController {
 
     @RequestMapping(value = {"/listContract"})
     public String listContract(Integer tid, Model model){
-        List<contract> listcontract=talentservice.listContract(tid);
+        List<tcontract> listcontract=talentservice.listTContract(tid);
         model.addAttribute("listcontract", listcontract);
         return "twoleader/Contract";
     }

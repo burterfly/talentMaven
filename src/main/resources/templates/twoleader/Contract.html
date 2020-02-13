@@ -37,7 +37,6 @@
 <body>
 <!--header-->
 <header>
- 
  <h1><img src="/twoleader/images/admin_logo.png"/></h1>
  <ul class="rt_nav">
   <li><a href="#" class="admin_icon">韩梅梅</a></li>
@@ -61,28 +60,27 @@
   </li>
  </ul>
 </aside>
-
       <section class="rt_wrap content mCustomScrollbar">
       <div class="rt_content">
       <div class="page_title">
        <h2 class="fl">合同管理</h2>     
       </div>
-      
       <table class="table">
+       <thead>
        <tr>
         <th style="width: 70px; ">编号</th>
          <th style="width: 70px; ">名称</th>
         <th style="width: 70px; ">详情</th>
        </tr>
-
-       <tr th:each="contract:${listcontract}">
-        <td th:text = "${contract.getCid()}" class="center"></td>
-        <td th:text = "${contract.getCname()}" class="center"></td>
-        <td th:text = "${contract.getCcontent()}" class="center"></td>
+       </thead>
+       <tbody>
+        <tr th:each="contract:${listcontract}">
+        <td th:text = "${contract.getTcid()}" class="center"></td>
+        <td th:text = "${contract.getTcname()}" class="center"></td>
+        <td th:text = "${contract.getTccontent()}" class="center"></td>
        </tr>
-
+       </tbody>
       </table>
-    
  </div>
 </section>
 </body>
