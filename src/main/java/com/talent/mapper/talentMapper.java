@@ -13,8 +13,6 @@ public interface talentMapper {
     //查询指定用户列表
     talent listTalent(Integer tid);
 
-
-
-
-
+    //删除talent
+    Integer delTalent(Integer tid);
 }

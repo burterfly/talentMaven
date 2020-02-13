@@ -21,4 +21,7 @@ public interface experienceMapper {
 
     //查询指定用户履职经历列表
     List<experience> listExperience(Integer tid);
+
+    //删除制定tid的信息
+    Integer delExperience(Integer tid);
 }

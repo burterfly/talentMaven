@@ -10,4 +10,6 @@ public interface tcontractMapper {
     //查询指定用户合同列表
     List<tcontract> listTContract(Integer tid);
 
+    //删除指定用户的合同
+    Integer delTContract(Integer tid);
 }

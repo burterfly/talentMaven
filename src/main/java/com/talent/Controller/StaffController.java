@@ -75,6 +75,10 @@ public class StaffController {
     }
 
 
+    /**
+     * 显示所有合同
+     * @return
+     */
     @RequestMapping(value = {"/Contract"}, method = RequestMethod.GET)
     @ResponseBody
     public List<contract> Contract(){
@@ -82,5 +86,22 @@ public class StaffController {
 
         System.out.println("显示所有合同"+listcontract.size());
         return listcontract;
+    }
+
+    /**
+     * 删除 talent
+     * @param model 传递人员List
+     * @return
+     */
+    @RequestMapping(value = {"/delTalent"}, method = RequestMethod.GET)
+    public String delTalent(Integer tid, Model model){
+        //
+        talentService.delTalent(tid);
+        System.out.println("删除数据工作人员:"+tid);
+        //从新刷新数据
+        List<talent> allTalent = talentService.listAllTalent();
+        model.addAttribute("allTalent", allTalent);
+
+        return "leader/User";
     }
 }

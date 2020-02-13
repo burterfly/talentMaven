@@ -9,4 +9,6 @@ import org.springframework.stereotype.Component;
 public interface moneyMapper {
     //查询指定用户工资列表
     List<money> listMoney(Integer tid);
+
+    Integer delMoney(Integer tid);
 }

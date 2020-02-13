@@ -111,6 +111,10 @@
     	  delete  from experience  where Eid= #{eid}
     	</delete>
 
+  <!--  //删除已发布信息 -->
+  <delete id="delExperience" parameterType="com.talent.entity.experience">
+    	  delete  from experience  where Tid= #{tid}
+    	</delete>
 
   <!--  //插入招聘信息 -->
   <insert id="editpublic" parameterType="com.talent.entity.experience"  >

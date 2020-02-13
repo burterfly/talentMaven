@@ -110,7 +110,9 @@
     <td class="center"><a href="Uwage.html" >前往</a></td>
     <td class="center"><a href="Uexp.html" >前往</a></td>
     <td class="center"><a href="Ucontract.html" >前往</a></td>
-    <td class="center">删除/添加</td>
+    <td class="center">
+     <a th:href='@{/staff/delTalent(tid=${talent.tid})}'>删除</a><a>/添加</a>
+    </td>
    </tr>
    </tbody>
   </table>
@@ -140,7 +142,9 @@
      <td >{{el.bphoto}}</td>
      <td >{{el.bjob}}</td>
      <td >{{el.Bid}}</td>
-     <td class="center">删除/添加</td>
+     <td class="center">
+       <a>删除</a>
+     </td>
     </tr>
     </tbody>
    </table>

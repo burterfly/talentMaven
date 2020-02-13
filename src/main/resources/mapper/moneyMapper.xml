@@ -94,4 +94,8 @@
     	  select * from money  where Tid=#{tid}
     	</select>
 
+  <!--  //删除员工工资表 -->
+  <delete id="delMoney" parameterType="com.talent.entity.money">
+    	  delete  from money  where Tid= #{tid}
+    	</delete>
 </mapper>

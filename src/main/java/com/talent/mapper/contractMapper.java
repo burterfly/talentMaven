@@ -9,4 +9,7 @@ import org.springframework.stereotype.Component;
 public interface contractMapper {
     //查询指定公司合同
     List<contract> listContract(Integer bid);
+
+    //查询指定公司合同 删除指定tid的数据
+    Integer delContract(Integer tid);
 }

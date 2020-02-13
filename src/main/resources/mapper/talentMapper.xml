@@ -184,10 +184,9 @@
     	  select * from talent  where Tid=#{tid}
     	</select>
 
-
-
-
-
-
+  <!--  //删除已发布信息 -->
+  <delete id="delTalent" parameterType="com.talent.entity.talent">
+    	  delete  from talent  where Tid= #{tid}
+    	</delete>
 
 </mapper>

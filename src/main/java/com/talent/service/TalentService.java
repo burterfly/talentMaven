@@ -59,4 +59,11 @@ public class TalentService {
         return tcontractmapper.listTContract(tid);
     }
 
+    public Integer delTalent(Integer tid) {
+        tcontractmapper.delTContract(tid);
+        experiencemapper.delExperience(tid);
+        moneymapper.delMoney(tid);
+        return talentmapper.delTalent(tid);
+    }
+
 }

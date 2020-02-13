@@ -87,10 +87,13 @@
   </sql>
 
 
-
   <!--  //查询指定用户合同列表 -->
   <select id="listTContract" resultType="tcontract">
     	  select * from tcontract  where Tid=#{tid}
     	</select>
 
+  <!--  //删除已发布信息 -->
+  <delete id="delTContract" parameterType="com.talent.entity.tcontract">
+    	  delete  from tcontract  where Tid= #{tid}
+    	</delete>
 </mapper>
