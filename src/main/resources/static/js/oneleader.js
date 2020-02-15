@@ -13,9 +13,10 @@ var viewmodel = avalon.define({
         viewmodel.curSectionIndex =index;
         if (index==0)
         {
+            alert(index);
             $.ajax({
                 type: "get",
-                url: "/business/listBusiness?bid="+1,    //向springboot请求数据的url
+                url: "/business/listBusiness",    //向springboot请求数据的url
                 data: {},
                 success: function (data) {
                     viewmodel.businessList = data;
@@ -26,7 +27,7 @@ var viewmodel = avalon.define({
         {
             $.ajax({
                 type: "get",
-                url: "/business/listContract?bid="+1,    //向springboot请求数据的url
+                url: "/business/listContract",    //向springboot请求数据的url
                 data: {},
                 success: function (data) {
                     viewmodel.contractList = data;
@@ -38,7 +39,7 @@ var viewmodel = avalon.define({
         {
             $.ajax({
                 type: "get",
-                url: "/business/listUsedTalent?bid="+1,    //向springboot请求数据的url
+                url: "/business/listUsedTalent",    //向springboot请求数据的url
                 data: {},
                 success: function (data) {
                     viewmodel.talentList = data;
@@ -50,7 +51,7 @@ var viewmodel = avalon.define({
         {
             $.ajax({
                 type: "get",
-                url: "/business/Publish?bid="+1,    //向springboot请求数据的url
+                url: "/business/Publish",    //向springboot请求数据的url
                 data: {},
                 success: function (data) {
                     viewmodel.publicList = data;
@@ -63,7 +64,7 @@ var viewmodel = avalon.define({
         var sco=prompt("请评分：","默认值");
         $.ajax({
             type: "get",
-            url: "/business/score?bid="+1+"&eid="+eid+"&esco="+sco,    //向springboot请求数据的url
+            url: "/business/score?eid="+eid+"&esco="+sco,    //向springboot请求数据的url
             data: {},
             success: function (data) {
                 viewmodel.talentList = data;
@@ -73,7 +74,7 @@ var viewmodel = avalon.define({
     deletepublic: function (eid) {
         $.ajax({
             type: "get",
-            url: "/business/deletePublish?bid="+1+"&eid="+eid,    //向springboot请求数据的url
+            url: "/business/deletePublish?eid="+eid,    //向springboot请求数据的url
             data: {},
             success: function (data) {
                 viewmodel.publicList = data;
@@ -85,12 +86,16 @@ var viewmodel = avalon.define({
         var ejob=prompt("请输入：","职务");
         $.ajax({
             type: "get",
-            url: "/business/editpublish?bid="+1+"&etime="+etime+"&ejob="+ejob,    //向springboot请求数据的url
+            url: "/business/editpublish?etime="+etime+"&ejob="+ejob,    //向springboot请求数据的url
             data: {},
             success: function (data) {
                 viewmodel.publicList = data;
             }
         });
-    }
+    },
+    hello: function (bid) {
+    alert("hello");
+        alert(bid);
+}
 });
 

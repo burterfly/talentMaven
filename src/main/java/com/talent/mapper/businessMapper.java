@@ -14,4 +14,8 @@ public interface businessMapper {
     List<usedtalent> listUsedTalent(Integer bid);
 
     List<business> listAllBusiness();
+
+    business businesslogin(String username,String password);
+
+    Integer businessregister(business business);
 }

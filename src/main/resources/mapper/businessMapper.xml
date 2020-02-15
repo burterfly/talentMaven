@@ -32,4 +32,16 @@
     	   select * from talent,experience where talent.Tid=experience.Tid and experience.Bid=#{bid}
     	</select>
 
+    <!--  //公司登入 -->
+    <select id="businesslogin" resultType="business">
+    	   select * from business where Busername=#{username} and Bpassword=#{password}
+    	</select>
+
+
+    <insert id="businessregister" parameterType="com.talent.entity.business">
+    	 insert business (Busername,Bpassword,Bname,Baddress,Btime,Bservice)
+	     value
+		(#{busername},#{bpassword},#{bname},#{baddress},#{btime},#{bservice})
+    	</insert>
+
 </mapper>

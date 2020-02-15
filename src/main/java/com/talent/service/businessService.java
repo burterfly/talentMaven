@@ -52,5 +52,11 @@ public class businessService {
     }
 
     //插入发布招聘信息
-    public Integer editpublic(experience experience){ return experiencemapper.editpublic(experience); }
-}
+    public Integer editpublic(experience experience) { return experiencemapper.editpublic(experience);}
+
+    //公司登入
+    public business businesslogin (String username, String password){ return businessmapper.businesslogin(username, password); }
+
+    //人才注册
+    public Integer businessregister(business business) { return businessmapper.businessregister(business); }
+    }

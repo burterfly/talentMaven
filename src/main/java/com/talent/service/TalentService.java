@@ -66,4 +66,10 @@ public class TalentService {
         return talentmapper.delTalent(tid);
     }
 
+    //人才登入
+    public talent talentlogin (String username, String password){ return talentmapper.talentlogin(username, password); }
+
+    //人才注册
+    public Integer talentregister(talent talent) { return talentmapper.talentregister(talent); }
+
 }

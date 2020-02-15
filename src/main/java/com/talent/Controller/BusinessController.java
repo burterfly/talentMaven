@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -20,35 +22,36 @@ public class BusinessController {
 //----------------------------展示企业信息------------------
     @RequestMapping(value = {"/listBusiness"}, method = RequestMethod.GET)
     public String listBusiness(Integer bid,Model model){
-        System.out.println(bid);
         business listbusiness=businessservice.listBusiness(bid);
         model.addAttribute("listbusiness", listbusiness);
-        System.out.println("显示企业信息"+listbusiness.getBname());
         return "oneleader/Company";
     }
 //------------合同----------------------------------
     @RequestMapping(value = {"/listContract"}, method = RequestMethod.GET)
     @ResponseBody
-    public List<contract> listContract(Integer bid){
+    public List<contract> listContract(Integer bid, HttpSession session){
+
+
+        bid= (Integer) session.getAttribute("bid");
         List<contract> listcontract=businessservice.listContract(bid);
-        System.out.println("显示所有合同"+listcontract.size());
+
         return listcontract;
     }
 
     //-------------------------聘用记录--------------------
     @RequestMapping(value = {"/listUsedTalent"}, method = RequestMethod.GET)
     @ResponseBody
-    public List<usedtalent> listUsedTalent(Integer bid){
-
+    public List<usedtalent> listUsedTalent(Integer bid, HttpSession session){
+        bid= (Integer) session.getAttribute("bid");
         List<usedtalent> listusedtalent=businessservice.listUsedTalent(bid);
-        System.out.println("显示所有聘用记录"+listusedtalent.size());
+
         return listusedtalent;
     }
 //------------------展示招聘------------------------------
     @RequestMapping(value = {"/Publish"}, method = RequestMethod.GET)
     @ResponseBody
-    public List<experience> Publish(Integer bid){
-        System.out.println("展示招聘信息"+bid);
+    public List<experience> Publish(Integer bid, HttpSession session){
+        bid= (Integer) session.getAttribute("bid");
         List<experience> listpublic=businessservice.listpublic(bid);
                for (int i = 0; i < listpublic.size(); i++) {
                    String name;
@@ -60,10 +63,8 @@ public class BusinessController {
 //----------------------------增加招聘信息--------------------------------
     @RequestMapping(value = {"/editpublish"}, method = RequestMethod.GET)
     @ResponseBody
-    public List<experience> editpublish(Integer bid,String etime,String ejob){
-        System.out.println(bid);
-        System.out.println(etime);
-        System.out.println(ejob);
+    public List<experience> editpublish(Integer bid,String etime,String ejob, HttpSession session){
+        bid= (Integer) session.getAttribute("bid");
         experience experience=new experience();
         experience.setBid(bid);
         experience.setEjob(ejob);
@@ -80,10 +81,8 @@ public class BusinessController {
 //-------------------------评分----------------------------------
     @RequestMapping(value = {"/score"}, method = RequestMethod.GET)
     @ResponseBody
-    public List<usedtalent> score(Integer bid,Integer eid,Integer esco){
-        System.out.println("评分"+bid);
-        System.out.println("评分"+eid);
-        System.out.println("评分"+esco);
+    public List<usedtalent> score(Integer bid,Integer eid,Integer esco, HttpSession session){
+        bid= (Integer) session.getAttribute("bid");
         businessservice.score(eid,esco);
         List<usedtalent> listusedtalent=businessservice.listUsedTalent(bid);
         System.out.println("评分+显示所有聘用记录"+listusedtalent.size());
@@ -93,9 +92,8 @@ public class BusinessController {
 //-----------------------删除招聘信息-----------------------------
     @RequestMapping(value = {"/deletePublish"}, method = RequestMethod.GET)
     @ResponseBody
-    public List<experience> deletePublish(Integer bid,Integer eid){
-        System.out.println("删除"+bid);
-        System.out.println("删除"+eid);
+    public List<experience> deletePublish(Integer bid,Integer eid, HttpSession session){
+        bid= (Integer) session.getAttribute("bid");
         businessservice.deletePublic(eid);
         List<experience> listpublic=businessservice.listpublic(bid);
         for (int i = 0; i < listpublic.size(); i++) {

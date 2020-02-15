@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>后台登录</title>
+    <meta name="author" content="DeathGhost" />
+    <link rel="stylesheet" type="text/css" href="/twoleader/css/style.css" />
+    <style>
+        body{height:100%;background:#16a085;overflow:hidden;}
+        canvas{z-index:-1;position:absolute;}
+    </style>
+    <script src="/twoleader/js/jquery.js"></script>
+    <script src="/twoleader/js/verificationNumbers.js"></script>
+    <script src="/twoleader/js/Particleground.js"></script>
+    <script>
+        $(document).ready(function() {
+            //粒子背景特效
+            $('body').particleground({
+                dotColor: '#5cbdaa',
+                lineColor: '#5cbdaa'
+            });
+            //验证码
+            createCode();
+            //测试提交，对接程序删除即可
+            $(".submit_btn").click(function(){
+                location.href="index.html";
+            });
+        });
+    </script>
+    <script   language="javaScript">
+        function     validate()
+        {
+            if     (document.myform.username.value==""||document.myform.password.value=="")
+            {
+                alert("信息不能为空，请将信息填写完整");
+                return   false   ;
+            }
+        }
+    </script>
+</head>
+<body>
+<dl class="admin_login">
+    <dt>
+        <strong th:text="注册"></strong>
+    </dt>
+    <div ms-controller='viewmodel'>
+
+        <div ms-visible="@a==1">
+            <form  action="/foregro/businessregister" method="post"  >
+                <dd class="user_icon"><input type="text" placeholder="公司账号"     class="login_txtbx" name="Busername"/></dd>
+                <dd class="user_icon"><input type="text" placeholder="公司密码"     class="login_txtbx" name="Bpassword"/></dd>
+                <dd class="user_icon"><input type="text" placeholder="公司名称"     class="login_txtbx" name="Bname"/></dd>
+                <dd class="user_icon"><input type="text" placeholder="办公地址"     class="login_txtbx" name="Baddress"/></dd>
+                <dd class="user_icon"><input type="text" placeholder="注册时间"     class="login_txtbx" name="Btime"/></dd>
+                <dd class="user_icon"><input type="text" placeholder="主营服务"     class="login_txtbx" name="Bservice"/></dd>
+                <dd><input type="submit" value="注册" class="submit_btn"/></dd>
+            </form>
+        </div>
+
+        <div ms-visible="@a==2">
+            <form  action="/foregro/talentregister" method="post"  >
+                <dd class="user_icon"><input type="text" autocomplete="off" placeholder="账号"   class="login_txtbx" name="Tusername"/></dd>
+                <dd class="user_icon"><input type="text" placeholder="密码"     class="login_txtbx" name="Tpassword"/></dd>
+                <dd class="user_icon"><input type="text" placeholder="姓名"     class="login_txtbx" name="Tname"/></dd>
+                <dd class="user_icon"><input type="text" placeholder="年龄"     class="login_txtbx" name="Tage"/></dd>
+                <dd class="user_icon"> <input type="text" placeholder="性别"     class="login_txtbx" name="Tsex"/></dd>
+                <dd class="user_icon"> <input type="text" placeholder="证书" class="login_txtbx" name="Tcer"/></dd>
+                <dd class="user_icon"> <input type="text" placeholder="教育经历" class="login_txtbx" name="Tedu"/></dd>
+                <dd class="user_icon"> <input type="text" placeholder="专业技能" class="login_txtbx" name="Tpro"/></dd>
+                <dd> <input type="submit" value="注册"   class="submit_btn"/></dd>
+            </form>
+        </div>
+
+    </div>
+
+</dl>
+</body>
+<script th:src="@{/js/avalon.js}"></script>
+<script th:src="@{/js/foregro.js}"></script>
+</html>

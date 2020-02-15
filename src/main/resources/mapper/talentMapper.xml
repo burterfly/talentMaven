@@ -189,4 +189,15 @@
     	  delete  from talent  where Tid= #{tid}
     	</delete>
 
+  <!--  //人才登入 -->
+  <select id="talentlogin" resultType="talent">
+    	   select * from talent where Tusername=#{username} and Tpassword=#{password}
+    	</select>
+
+  <!--  //人才注册 -->
+  <insert id="talentregister" parameterType="com.talent.entity.talent">
+    	 insert talent (Tusername,Tpassword,Tname,Tage,Tsex,Tcer,Tedu,Tpro)
+	     value
+		(#{tusername},#{tpassword},#{tname},#{tage},#{tsex},#{tcer},#{tedu},#{tpro})
+    	</insert>
 </mapper>

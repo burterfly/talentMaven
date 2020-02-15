@@ -15,4 +15,10 @@ public interface talentMapper {
 
     //删除talent
     Integer delTalent(Integer tid);
+
+    //人才登入
+    talent talentlogin(String username,String password);
+
+    //人才注册
+    Integer talentregister(talent talent);
 }

@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
-
-
 @Controller
 @RequestMapping(value = {"/talent"})
 public class TalentController {
@@ -19,24 +18,30 @@ public class TalentController {
     private TalentService talentservice;
     @Autowired
     private businessService businessservice;
-
+//---------------------------------------------------------------------------------------------------
     @RequestMapping(value = {"/listTalent"})
     public String listTalent(Integer tid, Model model){
         talent listtalent  = talentservice.listTalent(tid);
         model.addAttribute("listtalent", listtalent);
-        return "twoleader/Information";
+        return "twoleader/Talent";
     }
 
+    //---------------------------------------------------------------------------------------------------
 
-    @RequestMapping(value = {"/listContract"})
-    public String listContract(Integer tid, Model model){
-        List<tcontract> listcontract=talentservice.listTContract(tid);
-        model.addAttribute("listcontract", listcontract);
-        return "twoleader/Contract";
+    @RequestMapping(value = {"/listContract"}, method = RequestMethod.GET)
+    @ResponseBody
+    public List<tcontract> listContract(Integer tid, HttpSession session){
+        tid= (Integer) session.getAttribute("tid");
+        List<tcontract> listtcontract=talentservice.listTContract(tid);
+        System.out.println("显示所有合同"+listtcontract.size());
+        return listtcontract;
     }
 
-    @RequestMapping(value = {"/listExperience"})
-    public String listExperience(Integer tid, Model model){
+    //---------------------------------------------------------------------------------------------------
+    @RequestMapping(value = {"/listExperience"}, method = RequestMethod.GET)
+    @ResponseBody
+    public  List<experience> listExperience(Integer tid, HttpSession session){
+        tid= (Integer) session.getAttribute("tid");
         List<experience> listexperience=talentservice.listExperience(tid);
         for(int i=0;i<listexperience.size();i++)
         {
@@ -45,12 +50,13 @@ public class TalentController {
             name=businessservice.listBusiness(bid).getBname();
             listexperience.get(i).setBname(name);
         }
-        model.addAttribute("listexperience", listexperience);
-        return "twoleader/Experience";
+        return listexperience;
     }
-
-    @RequestMapping(value = {"/listMoney"})
-    public String listMoney(Integer tid, Model model) {
+    //---------------------------------------------------------------------------------------------------
+    @RequestMapping(value = {"/listMoney"}, method = RequestMethod.GET)
+    @ResponseBody
+    public  List<money> listMoney(Integer tid, HttpSession session){
+        tid= (Integer) session.getAttribute("tid");
         List<money> listmoney = talentservice.listMoney(tid);
         for (int i = 0; i < listmoney.size(); i++) {
             Integer bid = listmoney.get(i).getBid();
@@ -58,14 +64,14 @@ public class TalentController {
             name = businessservice.listBusiness(bid).getBname();
             listmoney.get(i).setBname(name);
         }
-        model.addAttribute("listmoney", listmoney);
-        return "twoleader/Wages";
+        return listmoney;
     }
-    //  @RequestMapping(value = {"/exit"})
+    //---------------------------------------------------------------------------------------------------
 
     @RequestMapping(value = {"/now"})
     public String now(){
         return "twoleader/Now";
+
     }
 
     @RequestMapping(value ="/exit", method = RequestMethod.GET)

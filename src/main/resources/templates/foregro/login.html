@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html  xmlns:th="http://www.thymeleaf.org">
 <head>
  <meta charset="utf-8"/>
  <title>后台登录</title>
@@ -27,11 +27,10 @@
    });
   });
  </script>
-
  <script   language="javaScript">
   function     validate()
   {
-   if     (document.myform.SUserName.value==""||document.myform.SPwd.value=="")
+   if     (document.myform.username.value==""||document.myform.password.value=="")
    {
     alert("信息不能为空，请将信息填写完整");
     return   false   ;
@@ -42,19 +41,50 @@
 <body>
 <dl class="admin_login">
  <dt>
-  <strong>宜室宜家后台管理系统</strong>
+  <strong>后台管理系统</strong>
  </dt>
+    <div ms-controller='viewmodel'>
+      <div class="identifire">
+          <span>身　份：</span>
+          <button type="button"   ms-click="@ClickMenu(1)">管理员</button>
+          <button type="button"   ms-click="@ClickMenu(2)">企业</button>
+          <button type="button"   ms-click="@ClickMenu(3)">人才</button>
+      </div>
+        <div ms-visible="1==@curSectionIndex">
+              <form    action="/foregro/businesslogin" method="post"  >
+                     <dd class="user_icon"><input type="text" placeholder="管理员账号" class="login_txtbx" name="username"/></dd>
+                     <dd class="pwd_icon"><input type="password" placeholder="管理员密码" class="login_txtbx" name="password"/></dd>
+                     <dd><input type="submit" value="管理员立即登录" class="submit_btn"/></dd>
+                </form>
+            </div>
+        <div ms-visible="2==@curSectionIndex">
+             <form   action="/foregro/businesslogin" method="get"  >
+                 <dd class="user_icon"><input type="text" placeholder="企业账号" class="login_txtbx" name="username"/></dd>
+                 <dd class="pwd_icon"><input type="password" placeholder="企业密码" class="login_txtbx" name="password"/></dd>
+                 <dd><input type="submit" value="企业立即登录" class="submit_btn"/></dd>
+             </form>
+                   <form  action="/foregro/toregister" method="get"  >
+                <!--       <input   type="hidden" value="1"  class="submit_btn" name="a"/>  -->
+                       <dd><input type="submit" value="注册" ms-click="@Menu(1)"   class="submit_btn"/></dd>
 
-  <dd class="user_icon">
-   <input type="text" placeholder="账号" class="login_txtbx" name="SUserName"/>
-  </dd>
-  <dd class="pwd_icon">
-   <input type="password" placeholder="密码" class="login_txtbx" name="SPwd"/>
-  </dd>
-  <dd>
-   <input type="submit" value="立即登录" class="submit_btn"/>
-  </dd>
+                       </form>
+       </div>
+        <div ms-visible="3==@curSectionIndex">
+            <form  action="/foregro/talentlogin" method="post"  >
+               <dd class="user_icon"><input type="text" placeholder="人才账号" class="login_txtbx" name="username"/></dd>
+               <dd class="pwd_icon"><input type="password" placeholder="人才密码" class="login_txtbx" name="password"/></dd>
+               <dd><input type="submit" value="人才立即登录" class="submit_btn"/></dd>
 
-</dl>
-</body>
-</html>
+
+                </form>
+                   <form  action="/foregro/toregister" method="get"  >
+                   <!--     <input   type="hidden" value="2" class="submit_btn" name="a"/>-->
+                       <dd> <input type="submit"  value="注册"   ms-click="@Menu(2)" class="submit_btn" /></dd>
+                      </form>
+             </div>
+            </div>
+        </dl>
+        </body>
+        <script th:src="@{/js/avalon.js}"></script>
+        <script th:src="@{/js/foregro.js}"></script>
+        </html>
