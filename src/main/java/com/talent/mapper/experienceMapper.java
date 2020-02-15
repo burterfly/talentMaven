@@ -24,4 +24,6 @@ public interface experienceMapper {
 
     //删除制定tid的信息
     Integer delExperience(Integer tid);
+
+    List<experience> listalbum();
 }

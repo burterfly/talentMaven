@@ -75,7 +75,8 @@ public class TalentController {
     }
 
     @RequestMapping(value ="/exit", method = RequestMethod.GET)
-    public String exit(){
+    public String exit(HttpSession session){
+    //    session.invalidate();
         System.out.println("测试一下实现跳转");
         return "foregro/login";
     }

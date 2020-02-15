@@ -38,14 +38,13 @@
         }
     </script>
 </head>
-<body>
+<body  ms-controller='viewmodel'>
 <dl class="admin_login">
     <dt>
         <strong th:text="注册"></strong>
     </dt>
-    <div ms-controller='viewmodel'>
-
-        <div ms-visible="@a==1">
+    <div >
+        <div ms-visible="1==@a">
             <form  action="/foregro/businessregister" method="post"  >
                 <dd class="user_icon"><input type="text" placeholder="公司账号"     class="login_txtbx" name="Busername"/></dd>
                 <dd class="user_icon"><input type="text" placeholder="公司密码"     class="login_txtbx" name="Bpassword"/></dd>
@@ -56,8 +55,7 @@
                 <dd><input type="submit" value="注册" class="submit_btn"/></dd>
             </form>
         </div>
-
-        <div ms-visible="@a==2">
+        <div ms-visible="2==@a">
             <form  action="/foregro/talentregister" method="post"  >
                 <dd class="user_icon"><input type="text" autocomplete="off" placeholder="账号"   class="login_txtbx" name="Tusername"/></dd>
                 <dd class="user_icon"><input type="text" placeholder="密码"     class="login_txtbx" name="Tpassword"/></dd>
