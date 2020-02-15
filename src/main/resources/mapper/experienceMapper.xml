@@ -122,4 +122,9 @@
 	     value
 		(#{bid},#{etime},#{ejob})
     	</insert>
+
+
+  <select id="listalbum" resultType="experience">
+    	 select * from experience  where Tid is  not null  and  Bid is not  null  and  Esco is not null
+    	</select>
 </mapper>

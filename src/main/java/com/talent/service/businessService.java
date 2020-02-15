@@ -59,4 +59,5 @@ public class businessService {
 
     //人才注册
     public Integer businessregister(business business) { return businessmapper.businessregister(business); }
+    public List<business> listAllBusiness() { return businessmapper.listAllBusiness(); }
     }

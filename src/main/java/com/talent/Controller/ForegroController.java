@@ -2,9 +2,11 @@ package com.talent.Controller;
 
 import com.talent.entity.account;
 import com.talent.entity.business;
+import com.talent.entity.experience;
 import com.talent.entity.talent;
 import com.talent.service.TalentService;
 import com.talent.service.businessService;
+import com.talent.service.foregroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = {"/foregro"})
@@ -22,6 +25,8 @@ public class ForegroController {
     private businessService businessservice;
     @Autowired
     private TalentService talentservice;
+    @Autowired
+    private foregroService foregroservice;
 
     @RequestMapping(value = {"/businesslogin"})
     public String businesslogin(@RequestParam("username") String username,
@@ -52,7 +57,7 @@ public class ForegroController {
     }
 
     @RequestMapping(value ="/toregister", method = RequestMethod.GET)
-    public String toregister(Integer a,Model model){
+    public String toregister(HttpSession session){
         return "foregro/register";
     }
 
@@ -97,4 +102,52 @@ public class ForegroController {
         businessservice.businessregister(business);
         return "foregro/login";
     }
+
+    @RequestMapping(value ="/toindex", method = RequestMethod.GET)
+    public String toindex(){
+        return "foregro/index";
+    }
+    @RequestMapping(value ="/toabout", method = RequestMethod.GET)
+    public String toabout(){
+        return "foregro/about";
+    }
+
+    @RequestMapping(value ="/toalbum")
+    public String toalbum(Model model)
+    {
+        List<business> listalbum = businessservice.listAllBusiness();
+        model.addAttribute("listalbum", listalbum);
+        System.out.println(listalbum.size());
+        return "foregro/album";
+    }
+
+
+    @RequestMapping(value ="/toalbum_detail")
+    public String toalbum_detail(Integer bid,Model model){
+        System.out.println(bid+"细节");
+        business listbusiness=businessservice.listBusiness(bid);
+        model.addAttribute("listbusiness", listbusiness);
+        return "foregro/album_detail";
+    }
+    @RequestMapping(value ="/toarticle", method = RequestMethod.GET)
+    public String toarticle(){
+        return "foregro/article";
+    }
+    @RequestMapping(value ="/toarticle_detail", method = RequestMethod.GET)
+    public String toarticle_detail(){
+        return "foregro/article_detail";
+    }
+    @RequestMapping(value ="/tocomment", method = RequestMethod.GET)
+    public String tocomment(){
+        return "foregro/comment";
+    }
+    @RequestMapping(value ="/tocontact", method = RequestMethod.GET)
+    public String tocontract(){
+        return "foregro/contact";
+    }
+    @RequestMapping(value ="/toproduct", method = RequestMethod.GET)
+    public String toproduct(){
+        return "foregro/product";
+    }
+
 }

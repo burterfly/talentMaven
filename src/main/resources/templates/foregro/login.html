@@ -63,28 +63,18 @@
                  <dd class="pwd_icon"><input type="password" placeholder="企业密码" class="login_txtbx" name="password"/></dd>
                  <dd><input type="submit" value="企业立即登录" class="submit_btn"/></dd>
              </form>
-                   <form  action="/foregro/toregister" method="get"  >
-                <!--       <input   type="hidden" value="1"  class="submit_btn" name="a"/>  -->
-                       <dd><input type="submit" value="注册" ms-click="@Menu(1)"   class="submit_btn"/></dd>
-
-                       </form>
        </div>
         <div ms-visible="3==@curSectionIndex">
             <form  action="/foregro/talentlogin" method="post"  >
                <dd class="user_icon"><input type="text" placeholder="人才账号" class="login_txtbx" name="username"/></dd>
                <dd class="pwd_icon"><input type="password" placeholder="人才密码" class="login_txtbx" name="password"/></dd>
                <dd><input type="submit" value="人才立即登录" class="submit_btn"/></dd>
-
-
                 </form>
-                   <form  action="/foregro/toregister" method="get"  >
-                   <!--     <input   type="hidden" value="2" class="submit_btn" name="a"/>-->
-                       <dd> <input type="submit"  value="注册"   ms-click="@Menu(2)" class="submit_btn" /></dd>
-                      </form>
              </div>
             </div>
         </dl>
         </body>
-        <script th:src="@{/js/avalon.js}"></script>
+
+<script th:src="@{/js/avalon.js}"></script>
         <script th:src="@{/js/foregro.js}"></script>
         </html>
