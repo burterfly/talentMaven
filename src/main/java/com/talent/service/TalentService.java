@@ -36,7 +36,7 @@ public class TalentService {
     }
 
     //查询指定人才列表
-    public talent listTalent(Integer tid)
+    public talent RequrstTalentByTid(Integer tid)
     {
         return talentmapper.listTalent(tid);
     }
@@ -72,4 +72,6 @@ public class TalentService {
     //人才注册
     public Integer talentregister(talent talent) { return talentmapper.talentregister(talent); }
 
+    //人才注册
+    public Integer talentUpdate(talent talent) { return talentmapper.talentUpdate(talent); }
 }

@@ -21,4 +21,7 @@ public interface talentMapper {
 
     //人才注册
     Integer talentregister(talent talent);
+
+    //人才更新
+    Integer talentUpdate(talent talent);
 }

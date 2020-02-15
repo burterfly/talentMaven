@@ -35,4 +35,40 @@
 
         });
     })(jQuery);
+
+
+    function updateTalent(id) {
+        if(!id){
+            alert('id错误');
+            return false;
+        }
+        alert('update'+id);
+        $.ajax(
+            {
+                url:"/staff/requrstTalent",
+                data:{"tid":id},
+                type:"post",
+                //解决编码问题
+                scriptCharset: 'utf-8',
+                beforeSend:function () {
+                    return true;
+                },
+                success:function (data) {
+                    alert(data.tusername)
+                    document.getElementById("inputTid").value = data.tid;
+                    document.getElementById("inputAccountUpdate").value = data.tusername;
+                    document.getElementById("inputPasswordUpdate").value = data.tpassword;
+                    document.getElementById("inputNameUpdate").value = data.tname;
+                    document.getElementById("inputAgeUpdate").value = data.tage;
+                    document.getElementById("inputSexUpdate").value = data.tsex;
+                    document.getElementById("inputCerUpdate").value = data.tcer;
+                    document.getElementById("inputEduUpdate").value = data.tedu;
+                    document.getElementById("inputScoUpdate").value = data.tpro;
+                    if(data){
+
+                        $('#username').attr("readonly","readonly");
+                    }
+                }
+            });
+    }
 </script>

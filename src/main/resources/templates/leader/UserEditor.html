@@ -86,56 +86,152 @@
                 <h3>新增用户</h3>
             </div>
             <div class="modal-body">
-                <form id="addUserForm" action="/staff/addUser" method="post" class="form-horizontal">
+                <form id="addUserForm" action="/staff/addTalent" method="post" class="form-horizontal">
                     <div class="form-group">
                         <label for="inputAccount" class="col-sm-2 control-label">账户</label>
                         <div class="col-sm-7">
-                            <input type="account" name="account" class="form-control" id="inputAccount" placeholder="账户"/>
+                            <input type="account" name="Tusername" class="form-control" id="inputAccount" placeholder="账户"/>
                         </div>
                         <label id="errorAccount" for="inputAccount" class="col-sm-3 control-label"></label>
                     </div>
                     <div class="form-group" >
                         <label for="inputPassword" class="col-sm-2 control-label">密码</label>
                         <div class="col-sm-7">
-                            <input type="text" name="password" class="form-control" id="inputPassword" placeholder="密码"/>
+                            <input type="text" name="Tpassword" class="form-control" id="inputPassword" placeholder="密码"/>
                         </div>
                         <label id="errorPassword" for="inputPassword" class="col-sm-3 control-label"></label>
                     </div>
                     <div class="form-group">
                         <label for="inputName" class="col-sm-2 control-label">姓名</label>
                         <div class="col-sm-7">
-                            <input type="name" name="name" class="col-sm-4 form-control" id="inputName" placeholder="姓名"/>
+                            <input type="name" name="Tname" class="col-sm-4 form-control" id="inputName" placeholder="姓名"/>
                         </div>
                         <label id="errorName" for="inputName" class="col-sm-3 control-label"></label>
                     </div>
                     <div class="form-group">
+                        <label for="inputAge" class="col-sm-2 control-label">年龄</label>
+                        <div class="col-sm-7">
+                            <input type="age" name="Tage" class="col-sm-4 form-control" id="inputAge" placeholder="年龄"/>
+                        </div>
+                        <label id="errorAge" for="inputAge" class="col-sm-3 control-label"></label>
+                    </div>
+                    <div class="form-group">
                         <label for="inputSex" class="col-sm-2 control-label">性别</label>
                         <div class="col-sm-7">
-                            <input type="sex" name="sex" class="col-sm-4 form-control" id="inputSex" placeholder="性别"/>
+                            <input type="sex" name="Tsex" class="col-sm-4 form-control" id="inputSex" placeholder="性别"/>
                         </div>
                         <label id="errorSex" for="inputSex" class="col-sm-3 control-label"></label>
                     </div>
                     <div class="form-group">
-                        <label for="inputPhone" class="col-sm-2 control-label">手机</label>
+                        <label for="inputCer" class="col-sm-2 control-label">证书</label>
                         <div class="col-sm-7">
-                            <input type="phone" name="phone" class="col-sm-4 form-control" id="inputPhone" placeholder="手机"/>
+                            <input type="cer" name="Tcer" class="col-sm-4 form-control" id="inputCer" placeholder="证书"/>
                         </div>
-                        <label id="errorPhone" for="inputPhone" class="col-sm-3 control-label"></label>
+                        <label id="errorCer" for="inputCer" class="col-sm-3 control-label"></label>
                     </div>
                     <div class="form-group">
-                        <label for="inputEmail" class="col-sm-2 control-label">邮箱</label>
+                        <label for="inputEdu" class="col-sm-2 control-label">学历</label>
                         <div class="col-sm-7">
-                            <input type="email" name="email" class="col-sm-4 form-control" id="inputEmail" placeholder="邮箱"/>
+                            <input type="edu" name="Tedu" class="col-sm-4 form-control" id="inputEdu" placeholder="学历"/>
                         </div>
-                        <label id="errorEmail" for="inputEmail" class="col-sm-3 control-label"></label>
+                        <label id="errorEdu" for="inputEdu" class="col-sm-3 control-label"></label>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputSco" class="col-sm-2 control-label">评分</label>
+                        <div class="col-sm-7">
+                            <input type="sco" name="Tpro" class="col-sm-4 form-control" id="inputSco" placeholder="评分"/>
+                        </div>
+                        <label id="errorSco" for="inputSco" class="col-sm-3 control-label"></label>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" οnclick="resetAddModal()">取消</button>
+                        <button type="submit" id="conf" class="btn btn-default" >确定</button>
                     </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" οnclick="resetAddModal()">取消</button>
-                <button type="button" id="conf" class="btn btn-default" οnclick="addUser()">确定</button>
 
+        </div>
+    </div>
+</div>
+</div>
+
+//更新员工的 模态
+<div th:fragment="updateTalentModal">
+
+<div class="modal fade" id="updateTalent"  >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>更新用户</h3>
             </div>
+            <div class="modal-body">
+                <form id="updateUserForm" action="/staff/updateTalent" method="post" class="form-horizontal" >
+                    <input type="text" name="Tid" class="form-control" id="inputTid" placeholder="" hidden/>
+                    <div class="form-group">
+                        <label for="inputAccount" class="col-sm-2 control-label">账户</label>
+                        <div class="col-sm-7">
+                            <input type="account" name="Tusername" class="form-control" id="inputAccountUpdate" placeholder=""  ></input>
+                        </div>
+                        <label id="UerrorAccountUpdate" for="inputAccount" class="col-sm-3 control-label"></label>
+                    </div>
+                    <div class="form-group" >
+                        <label for="inputPassword" class="col-sm-2 control-label">密码</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="Tpassword" class="form-control" id="inputPasswordUpdate" placeholder=""/>
+                        </div>
+                        <label id="errorPasswordUpdate" for="inputPassword" class="col-sm-3 control-label"></label>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputName" class="col-sm-2 control-label">姓名</label>
+                        <div class="col-sm-7">
+                            <input type="name" name="Tname" class="col-sm-4 form-control" id="inputNameUpdate" placeholder=""/>
+                        </div>
+                        <label id="errorNameUpdate" for="inputName" class="col-sm-3 control-label"></label>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAge" class="col-sm-2 control-label">年龄</label>
+                        <div class="col-sm-7">
+                            <input type="age" name="Tage" class="col-sm-4 form-control" id="inputAgeUpdate" placeholder=""/>
+                        </div>
+                        <label id="errorAgeUpdate" for="inputAge" class="col-sm-3 control-label"></label>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputSex" class="col-sm-2 control-label">性别</label>
+                        <div class="col-sm-7">
+                            <input type="sex" name="Tsex" class="col-sm-4 form-control" id="inputSexUpdate" placeholder=""/>
+                        </div>
+                        <label id="errorSexUpdate" for="inputSex" class="col-sm-3 control-label"></label>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputCer" class="col-sm-2 control-label">证书</label>
+                        <div class="col-sm-7">
+                            <input type="cer" name="Tcer" class="col-sm-4 form-control" id="inputCerUpdate" placeholder=""/>
+                        </div>
+                        <label id="errorCerUpdate" for="inputCer" class="col-sm-3 control-label"></label>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEdu" class="col-sm-2 control-label">学历</label>
+                        <div class="col-sm-7">
+                            <input type="edu" name="Tedu" class="col-sm-4 form-control" id="inputEduUpdate" placeholder=""/>
+                        </div>
+                        <label id="errorEduUpdate" for="inputEdu" class="col-sm-3 control-label"></label>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputSco" class="col-sm-2 control-label">评分</label>
+                        <div class="col-sm-7">
+                            <input type="sco" name="Tpro" class="col-sm-4 form-control" id="inputScoUpdate" placeholder=""/>
+                        </div>
+                        <label id="errorScoUpdate" for="inputSco" class="col-sm-3 control-label"></label>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" οnclick="resetAddModal()">取消</button>
+                        <button type="submit" id="confUpdate" class="btn btn-default" >确定</button>
+                    </div>
+                </form>
+            </div>
+
         </div>
     </div>
 </div>

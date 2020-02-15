@@ -200,4 +200,13 @@
 	     value
 		(#{tusername},#{tpassword},#{tname},#{tage},#{tsex},#{tcer},#{tedu},#{tpro})
     	</insert>
+
+  <!--  //人才更新 -->
+  <update id="talentUpdate" parameterType="com.talent.entity.talent">
+    	 update talent set Tusername=#{tusername},Tpassword=#{tpassword},Tname=#{tname},
+    	 Tage=#{tage},Tsex=#{tsex},Tcer=#{tcer},Tedu=#{tedu},Tpro=#{tpro}
+		where Tid=#{tid}
+    	</update>
+
+
 </mapper>

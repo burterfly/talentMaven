@@ -2,6 +2,7 @@ package com.talent.Controller;
 
 import com.talent.entity.business;
 import com.talent.entity.contract;
+import com.talent.entity.experience;
 import com.talent.entity.talent;
 import com.talent.service.StaffService;
 import com.talent.service.TalentService;
@@ -10,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -104,17 +107,69 @@ public class StaffController {
 
         return "leader/User";
     }
+    @RequestMapping(value ="/updateTalent",method = RequestMethod.POST)
+    public String updateTalent(@RequestParam("Tid") Integer Tid,
+                               @RequestParam("Tusername") String Tusername,
+                                 @RequestParam("Tpassword") String Tpassword,
+                                 @RequestParam("Tname") String Tname,
+                                 @RequestParam("Tage") Integer Tage,
+                                 @RequestParam("Tsex") String Tsex,
+                                 @RequestParam("Tcer") String Tcer,
+                                 @RequestParam("Tedu") String Tedu,
+                                 @RequestParam("Tpro") String Tpro,Model model) {
+        talent talent=new talent();
+        talent.setTid(Tid);
+        talent.setTusername(Tusername);
+        talent.setTpassword(Tpassword);
+        talent.setTname(Tname);
+        talent.setTage(Tage);
+        talent.setTsex(Tsex);
+        talent.setTcer(Tcer);
+        talent.setTedu(Tedu);
+        talent.setTpro(Tpro);
+        System.out.println("更新员工");
+        talentService.talentUpdate(talent);
 
-    /**
-     * 添加 talent
-     * @param
-     * @return
-     */
-    @RequestMapping(value = {"/addTalent"}, method = RequestMethod.GET)
-    @ResponseBody
-    public String addTalent(talent talent){
-
+        List<talent> allTalent = talentService.listAllTalent();
+        model.addAttribute("allTalent", allTalent);
         return "leader/User";
+    }
+
+
+    @RequestMapping(value ="/addTalent",method = RequestMethod.POST)
+    public String addTalent(
+                            @RequestParam("Tusername") String Tusername,
+                            @RequestParam("Tpassword") String Tpassword,
+                            @RequestParam("Tname") String Tname,
+                            @RequestParam("Tage") Integer Tage,
+                            @RequestParam("Tsex") String Tsex,
+                            @RequestParam("Tcer") String Tcer,
+                            @RequestParam("Tedu") String Tedu,
+                            @RequestParam("Tpro") String Tpro,Model model) {
+        talent talent=new talent();
+
+        talent.setTusername(Tusername);
+        talent.setTpassword(Tpassword);
+        talent.setTname(Tname);
+        talent.setTage(Tage);
+        talent.setTsex(Tsex);
+        talent.setTcer(Tcer);
+        talent.setTedu(Tedu);
+        talent.setTpro(Tpro);
+        System.out.println("添加员工");
+        talentService.talentregister(talent);
+
+        List<talent> allTalent = talentService.listAllTalent();
+        model.addAttribute("allTalent", allTalent);
+        return "leader/User";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = {"/requrstTalent"},method = RequestMethod.POST)
+    public talent listTalent(Integer tid, Model model){
+        talent targetTalent  = talentService.RequrstTalentByTid(tid);
+        System.out.println("更新查询"+targetTalent);
+        return targetTalent;
     }
 }
 

@@ -21,7 +21,7 @@ public class TalentController {
 //---------------------------------------------------------------------------------------------------
     @RequestMapping(value = {"/listTalent"})
     public String listTalent(Integer tid, Model model){
-        talent listtalent  = talentservice.listTalent(tid);
+        talent listtalent  = talentservice.RequrstTalentByTid(tid);
         model.addAttribute("listtalent", listtalent);
         return "twoleader/Talent";
     }
@@ -80,6 +80,13 @@ public class TalentController {
         return "foregro/login";
     }
 
+    @RequestMapping(value = {"/requrstTalent"}, method = RequestMethod.GET)
+    @ResponseBody
+    public talent requrstTalent(Integer tid){
+        talent talent=talentservice.RequrstTalentByTid(tid);
+
+        return talent;
+    }
 }
 
 

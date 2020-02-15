@@ -1,5 +1,6 @@
 package com.talent.Controller;
 
+import com.talent.entity.User;
 import com.talent.entity.account;
 import com.talent.service.UserLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = {"/user"})
@@ -18,6 +21,45 @@ public class accountLogin {
 
     @Autowired
     private UserLoginService userLoginService;
+
+    /*=============================================*/
+    @RequestMapping(value = "ModelForm", method = RequestMethod.GET)
+    public String ModelForm(Model model){
+        List<User> list = new ArrayList<User>();
+
+        for (int i = 0; i < 10; i++) {
+            User user = new User();
+            user.setId(i + 1);
+            user.setName("springboot" + i);
+            user.setSex("male");
+            user.setAge(i + 1);
+            user.setRole("developer");
+
+            list.add(user);
+        }
+        model.addAttribute("userlist",list);
+        return "ModelForm";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "toUpdateUser", method = RequestMethod.POST)
+    public User updateUser(Integer id, Model model){
+        List<User> list = new ArrayList<User>();
+
+        for (int i = 0; i < 10; i++) {
+            User user = new User();
+            user.setId(i + 1);
+            user.setName("springboot" + i);
+            user.setSex("male");
+            user.setAge(i + 1);
+            user.setRole("developer");
+
+            list.add(user);
+        }
+        System.out.println("toUpdateUser");
+        return list.get(id-1);
+    }
+    /*=============================================*/
 
     @RequestMapping(value = "springboot", method = RequestMethod.GET)
     public String show(Model model){
