@@ -3,41 +3,16 @@
 <head>
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title>后台管理系统</title>
-<meta name="author" content="DeathGhost" />
-<link rel="stylesheet" type="text/css" href="/twoleader/css/style.css">
-<!--[if lt IE 9]>
-<script src="/twoleader/js/html5.js"></script>
-<![endif]-->
+ <style th:replace="leader/UserEditor::modalStyle"></style>
 
- <script src="/twoleader/js/jquery.js"></script>
- <script th:src="@{/js/avalon.js}"></script>
- <script th:src="@{/js/bootstrap.min.js}"></script>
- <script th:src="@{/js/staff.js}"></script>
-<script src="/twoleader/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script>
-	(function($){
-		$(window).load(function(){
-			
-			$("a[rel='load-content']").click(function(e){
-				e.preventDefault();
-				var url=$(this).attr("href");
-				$.get(url,function(data){
-					$(".content .mCSB_container").append(data); //load new content inside .mCSB_container
-					//scroll-to appended content 
-					$(".content").mCustomScrollbar("scrollTo","h2:last");
-				});
-			});
-			
-			$(".content").delegate("a[href='top']","click",function(e){
-				e.preventDefault();
-				$(".content").mCustomScrollbar("scrollTo",$(this).attr("href"));
-			});
-			
-		});
-	})(jQuery);
-</script>
+<meta name="author" content="DeathGhost" />
+
+ <link rel="stylesheet" type="text/css" href="/twoleader/css/style.css">
+ <div th:include="leader/footer.html"></div>
+
 </head>
 <body >
+
 <!--header-->
 <header>
  
@@ -47,8 +22,7 @@
   <li><a href="login.jsp" class="quit_icon">安全退出</a></li>
  </ul>
 </header>
-<!--aside nav-->
-<!--aside nav-->
+
 <div ms-controller='viewmodel'>
 <aside class="lt_aside_nav content mCustomScrollbar">
  <ul>
@@ -76,14 +50,16 @@
   </li>   
  </ul>
 </aside>
-
-<div >
+<div>
  //员工列表的显示
  <section ms-visible="0==@curSectionIndex" class="rt_wrap content mCustomScrollbar">
  <div class="rt_content">
   <div class="page_title">
    <h2 class="fl">员工管理</h2>
   </div>
+
+  <div th:replace="leader/UserEditor::addTalentModal"></div>
+
   <table class="table">
    <tr>
     <th style="width: 70px; ">姓名</th>
@@ -100,7 +76,7 @@
    </tr>
    <tbody>
    <tr th:each="talent,memberStat:${allTalent}">
-    <td th:text="${talent.tname}" ></td>>
+    <td th:text="${talent.tname}" ></td>
     <td th:text="${talent.tage}"/>
     <td th:text="${talent.tsex}"/>
     <td th:text="${talent.tcer}"/>
@@ -114,6 +90,7 @@
      <a th:href='@{/staff/delTalent(tid=${talent.tid})}'>删除</a><a>/添加</a>
     </td>
    </tr>
+
    </tbody>
   </table>
  </div>

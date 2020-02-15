@@ -24,7 +24,10 @@ public class helloCntroller {
         public String hello(){
             return "index1";
         }
-
+    @RequestMapping(value = {"/ModelForm"})
+    public String ModelForm(){
+        return "ModelForm";
+    }
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(ModelMap modelMap) {
         modelMap.put("msg", "SpringBoot Ajax 示例");
@@ -35,10 +38,13 @@ public class helloCntroller {
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     @ResponseBody
     public String home() {
-
         return "home";
     }
 
+    @RequestMapping(value = "/form", method = RequestMethod.GET)
+    public String form() {
+        return "FormExamble";
+    }
 
     @RequestMapping(value = "/data", method = RequestMethod.GET)
     @ResponseBody

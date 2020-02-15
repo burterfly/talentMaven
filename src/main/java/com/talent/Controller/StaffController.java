@@ -104,4 +104,18 @@ public class StaffController {
 
         return "leader/User";
     }
+
+    /**
+     * 添加 talent
+     * @param
+     * @return
+     */
+    @RequestMapping(value = {"/addTalent"}, method = RequestMethod.GET)
+    @ResponseBody
+    public String addTalent(talent talent){
+
+        return "leader/User";
+    }
 }
+
+
