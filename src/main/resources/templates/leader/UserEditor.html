@@ -73,6 +73,54 @@
     }
 </style>
 
+//员工列表的显示
+<section th:fragment="talentShowSection" ms-visible="0==@curSectionIndex" class="rt_wrap content mCustomScrollbar">
+    <div class="rt_content">
+        <div class="page_title">
+            <h2 class="fl">员工管理</h2>
+        </div>
+
+        <div th:replace="leader/UserEditor::addTalentModal"></div>
+        <div th:replace="leader/UserEditor::updateTalentModal"></div>
+
+
+        <table class="table">
+            <tr>
+                <th style="width: 70px; ">姓名</th>
+                <th style="width: 70px; ">年龄</th>
+                <th style="width: 70px; ">性别</th>
+                <th style="width: 70px; ">资格证书</th>
+                <th style="width: 70px; ">教育经历</th>
+                <th style="width: 70px; ">业务技能</th>
+                <th style="width: 70px; ">评分</th>
+                <th style="width: 70px; ">工资结算</th>
+                <th style="width: 70px; ">履职经历</th>
+                <th style="width: 70px; ">合同管理</th>
+                <th style="width: 70px; ">操作</th>
+            </tr>
+            <tbody>
+            <tr th:each="talent,memberStat:${allTalent}">
+                <td th:text="${talent.tname}" ></td>
+                <td th:text="${talent.tage}"/>
+                <td th:text="${talent.tsex}"/>
+                <td th:text="${talent.tcer}"/>
+                <td th:text="${talent.tedu}"/>
+                <td th:text="${talent.tpro}"/>
+                <td th:text="${talent.twages}"/>
+                <td class="center"><a href="Uwage.html" >前往</a></td>
+                <td class="center"><a href="Uexp.html" >前往</a></td>
+                <td class="center"><a href="Ucontract.html" >前往</a></td>
+                <td class="center">
+                    <a th:href='@{/staff/delTalent(tid=${talent.tid})}'>删除</a>
+                    <a  type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#updateTalent" th:onclick="'javascript:updateTalent('+${talent.tid}+')'">/修改</a>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</section>
+
 //添加员工的 模态
 <div th:fragment="addTalentModal">
 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">

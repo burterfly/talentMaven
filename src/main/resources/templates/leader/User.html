@@ -51,85 +51,9 @@
  </ul>
 </aside>
 <div>
- //员工列表的显示
- <section ms-visible="0==@curSectionIndex" class="rt_wrap content mCustomScrollbar">
- <div class="rt_content">
-  <div class="page_title">
-   <h2 class="fl">员工管理</h2>
-  </div>
+ <section th:replace="leader/UserEditor::talentShowSection"/>
 
-  <div th:replace="leader/UserEditor::addTalentModal"></div>
-  <div th:replace="leader/UserEditor::updateTalentModal"></div>
-
-
-  <table class="table">
-   <tr>
-    <th style="width: 70px; ">姓名</th>
-    <th style="width: 70px; ">年龄</th>
-    <th style="width: 70px; ">性别</th>
-    <th style="width: 70px; ">资格证书</th>
-    <th style="width: 70px; ">教育经历</th>
-    <th style="width: 70px; ">业务技能</th>
-    <th style="width: 70px; ">评分</th>
-    <th style="width: 70px; ">工资结算</th>
-    <th style="width: 70px; ">履职经历</th>
-    <th style="width: 70px; ">合同管理</th>
-    <th style="width: 70px; ">操作</th>
-   </tr>
-   <tbody>
-   <tr th:each="talent,memberStat:${allTalent}">
-    <td th:text="${talent.tname}" ></td>
-    <td th:text="${talent.tage}"/>
-    <td th:text="${talent.tsex}"/>
-    <td th:text="${talent.tcer}"/>
-    <td th:text="${talent.tedu}"/>
-    <td th:text="${talent.tpro}"/>
-    <td th:text="${talent.twages}"/>
-    <td class="center"><a href="Uwage.html" >前往</a></td>
-    <td class="center"><a href="Uexp.html" >前往</a></td>
-    <td class="center"><a href="Ucontract.html" >前往</a></td>
-    <td class="center">
-     <a th:href='@{/staff/delTalent(tid=${talent.tid})}'>删除</a>
-     <a  type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#updateTalent" th:onclick="'javascript:updateTalent('+${talent.tid}+')'">/修改</a>
-    </td>
-   </tr>
-
-   </tbody>
-  </table>
- </div>
-</section>
-
- //企业管理显示
- <section ms-visible="1==@curSectionIndex"  class="rt_wrap content mCustomScrollbar">
-  <div class="rt_content">
-   <div class="page_title">
-    <h2 class="fl">企业管理</h2>
-   </div>
-
-   <table class="table">
-    <tr>
-     <th style="width: 70px; ">名称</th>
-     <th style="width: 70px; ">办公地点</th>
-     <th style="width: 70px; ">注册时间</th>
-     <th style="width: 70px; ">主营业务</th>
-     <th style="width: 70px; ">合同详情</th>
-     <th style="width: 70px; ">操作</th>
-    </tr>
-<tbody>
-<tr ms-for="el in @business">
-     <td >{{el.bname}}</td>
-     <td >{{el.baddress}}</td>
-     <td >{{el.bphoto}}</td>
-     <td >{{el.bjob}}</td>
-     <td >{{el.Bid}}</td>
-     <td class="center">
-       <a>删除</a>
-     </td>
-    </tr>
-    </tbody>
-   </table>
-  </div>
- </section>
+ <section th:replace="leader/CompanyEditor::companyShowSection"/>
 
  //员工合同的显示
  <section ms-visible="2==@curSectionIndex" class="rt_wrap content mCustomScrollbar">

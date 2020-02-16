@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+
+//企业管理显示
+<section th:fragment="companyShowSection" ms-visible="1==@curSectionIndex"  class="rt_wrap content mCustomScrollbar">
+    <div class="rt_content">
+        <div class="page_title">
+            <h2 class="fl">企业管理</h2>
+        </div>
+
+        <table class="table">
+            <tr>
+                <th style="width: 70px; ">名称</th>
+                <th style="width: 70px; ">办公地点</th>
+                <th style="width: 70px; ">注册时间</th>
+                <th style="width: 70px; ">主营业务</th>
+                <th style="width: 70px; ">合同详情</th>
+                <th style="width: 70px; ">操作</th>
+            </tr>
+            <tbody>
+            <tr ms-for="el in @business">
+                <td >{{el.bname}}</td>
+                <td >{{el.baddress}}</td>
+                <td >{{el.bphoto}}</td>
+                <td >{{el.bjob}}</td>
+                <td >{{el.Bid}}</td>
+                <td class="center">
+                    <a>删除</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
 
 </body>
 </html>
