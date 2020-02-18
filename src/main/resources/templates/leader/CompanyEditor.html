@@ -5,6 +5,72 @@
     <title>Title</title>
 </head>
 <body>
+<style th:fragment="modalStyle">
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 17px;
+        line-height: 1.6;
+    }
+    .button{
+        border: 0;    /* 去除原button边框样式 */
+        background-color: coral;
+        color: #fff;
+        padding: 1em 2em;
+    }
+    .button:hover{
+        background-color: #333;
+    }
+    .modal{
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        background-color: rgba(0, 0, 0,0.5);
+    }
+    .modal-content{
+        background-color: #f4f4f4;
+        margin: 15% auto;
+        width: 80%;
+        box-shadow: 0 5px 8px 0 rgba(0, 0, 0,0.2), 0 7px 20px 0 rgba(0, 0, 0,0.2);
+        animation-name: modalopen;
+        animation-duration: 1s;
+    }
+    .modal-header h2,.modal-footer h3{
+        margin: 0;
+    }
+    .modal-header{
+        background-color: coral;
+        padding: 15px;
+        color: #fff;
+    }
+    .closeBtn{
+        color: #fff;
+        float: right;
+        font-size: 30px;
+    }
+    .closeBtn:hover,.closeBtn:focus{
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .modal-body{
+        padding:10px 20px;
+    }
+    .modal-footer{
+        color: #fff;
+        background-color: coral;
+        padding: 10px;
+        text-align: center;
+    }
+    @keyframes modalopen{
+        from {opacity: 0}
+        to {opacity: 1}
+    }
+</style>
 
 //企业管理显示
 <section th:fragment="companyShowSection" ms-visible="1==@curSectionIndex"  class="rt_wrap content mCustomScrollbar">
@@ -13,30 +79,174 @@
             <h2 class="fl">企业管理</h2>
         </div>
 
+        <div th:replace="leader/CompanyEditor::addBusinessModal"></div>
+        <div th:replace="leader/CompanyEditor::updateBusinessModal"></div>
+
+
         <table class="table">
             <tr>
                 <th style="width: 70px; ">名称</th>
                 <th style="width: 70px; ">办公地点</th>
                 <th style="width: 70px; ">注册时间</th>
                 <th style="width: 70px; ">主营业务</th>
-                <th style="width: 70px; ">合同详情</th>
+                <th style="width: 70px; ">合同管理</th>
                 <th style="width: 70px; ">操作</th>
             </tr>
-            <tbody>
-            <tr ms-for="el in @business">
-                <td >{{el.bname}}</td>
-                <td >{{el.baddress}}</td>
-                <td >{{el.bphoto}}</td>
-                <td >{{el.bjob}}</td>
-                <td >{{el.Bid}}</td>
-                <td class="center">
-                    <a>删除</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</section>
 
-</body>
-</html>
+                         <tbody>
+                        <tr th:each="business : ${allbusiness}" >
+                            <td th:text="${business.bname}" ></td>
+                            <td th:text="${business.baddress}"/>
+                            <td th:text="${business.btime}"/>
+                            <td th:text="${business.bservice}"/>
+                            <td ></td>
+                            <td class="center">
+                                <a th:href='@{/staff/delbusiness(bid=${business.bid})}'>删除</a>
+                                <a  type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#updateBusiness" th:onclick="'javascript:updateBusiness('+${business.bid}+')'">/修改</a>
+                            </td>
+                        </tr>
+                        </tbody>
+              </table>
+          </div>
+      </section>
+
+
+      //添加企业的 模态
+      <div th:fragment="addBusinessModal">
+          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalone">
+              添加企业
+          </button>
+
+          <div class="modal fade" id="myModalone"  >
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h3>新增企业</h3>
+                      </div>
+                      <div class="modal-body">
+                          <form id="addBusinessForm" action="/staff/addBusiness" method="post" class="form-horizontal">
+                              <div class="form-group">
+                                  <label for="inputAccount" class="col-sm-2 control-label">账户</label>
+                                  <div class="col-sm-7">
+                                      <input  name="Busername" class="form-control" id="inputAccount" placeholder="账户"/>
+                                  </div>
+                                  <label id="errorAccount" for="inputAccount" class="col-sm-3 control-label"></label>
+                              </div>
+                              <div class="form-group" >
+                                  <label for="inputPassword" class="col-sm-2 control-label">密码</label>
+                                  <div class="col-sm-7">
+                                      <input  name="Bpassword" class="form-control" id="inputPassword" placeholder="密码"/>
+                                  </div>
+                                  <label id="errorPassword" for="inputPassword" class="col-sm-3 control-label"></label>
+                              </div>
+                              <div class="form-group">
+                                  <label for="inputName" class="col-sm-2 control-label">公司名称</label>
+                                  <div class="col-sm-7">
+                                      <input  name="Bname" class="col-sm-4 form-control" id="inputName" placeholder="公司名称"/>
+                                  </div>
+                                  <label id="errorName" for="inputName" class="col-sm-3 control-label"></label>
+                              </div>
+                              <div class="form-group">
+                                  <label for="inputadddress" class="col-sm-2 control-label">办公地址</label>
+                                  <div class="col-sm-7">
+                                      <input  name="Baddress" class="col-sm-4 form-control" id="inputadddress" placeholder="办公地址"/>
+                                  </div>
+                                  <label id="erroraddress" for="inputadddress" class="col-sm-3 control-label"></label>
+                              </div>
+                              <div class="form-group">
+                                  <label for="inputTime" class="col-sm-2 control-label">注册时间</label>
+                                  <div class="col-sm-7">
+                                      <input  name="Btime" class="col-sm-4 form-control" id="inputTime" placeholder="注册时间"/>
+                                  </div>
+                                  <label id="errorTime" for="inputTime" class="col-sm-3 control-label"></label>
+                              </div>
+                              <div class="form-group">
+                                  <label for="inputser" class="col-sm-2 control-label">主营业务</label>
+                                  <div class="col-sm-7">
+                                      <input  name="Bservice" class="col-sm-4 form-control" id="inputser" placeholder="主营业务"/>
+                                  </div>
+                                  <label id="errorser" for="inputser" class="col-sm-3 control-label"></label>
+                              </div>
+                              <div class="modal-footer">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal" οnclick="resetAddModal()">取消</button>
+                                  <button type="submit" id="conf" class="btn btn-default" >确定</button>
+                              </div>
+                          </form>
+                      </div>
+
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      //更新企业的 模态
+      <div th:fragment="updateBusinessModal">
+
+          <div class="modal fade" id="updateBusiness"  >
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h3>更新企业</h3>
+                      </div>
+                      <div class="modal-body">
+                          <form id="updateUserForm" action="/staff/updateBusiness" method="post" class="form-horizontal" >
+                              <input type="text" name="Bid" class="form-control" id="inputBid" placeholder="" hidden/>
+                              <div class="form-group">
+                                  <label for="inputAccount" class="col-sm-2 control-label">账户</label>
+                                  <div class="col-sm-7">
+                                      <input  name="Busername" class="form-control" id="inputAccountUpdate" placeholder=""  />
+                                  </div>
+                                  <label id="UerrorAccountUpdate" for="inputAccount" class="col-sm-3 control-label"></label>
+                              </div>
+                              <div class="form-group" >
+                                  <label for="inputPassword" class="col-sm-2 control-label">密码</label>
+                                  <div class="col-sm-7">
+                                      <input  name="Bpassword" class="form-control" id="inputPasswordUpdate" placeholder=""/>
+                                  </div>
+                                  <label id="errorPasswordUpdate" for="inputPassword" class="col-sm-3 control-label"></label>
+                              </div>
+                              <div class="form-group">
+                                  <label for="inputName" class="col-sm-2 control-label">公司名称</label>
+                                  <div class="col-sm-7">
+                                      <input  name="Bname" class="col-sm-4 form-control" id="inputNameUpdate" placeholder=""/>
+                                  </div>
+                                  <label id="errorNameUpdate" for="inputName" class="col-sm-3 control-label"></label>
+                              </div>
+                              <div class="form-group">
+                                  <label for="inputadddress" class="col-sm-2 control-label">办公地址</label>
+                                  <div class="col-sm-7">
+                                      <input  name="Baddress" class="col-sm-4 form-control" id="inputAddressUpdate" placeholder=""/>
+                                  </div>
+                                  <label id="errorAddressUpdate" for="inputadddress" class="col-sm-3 control-label"></label>
+                              </div>
+                              <div class="form-group">
+                                  <label for="inputTime" class="col-sm-2 control-label">注册时间</label>
+                                  <div class="col-sm-7">
+                                      <input  name="Btime" class="col-sm-4 form-control" id="inputTimeUpdate" placeholder=""/>
+                                  </div>
+                                  <label id="errorSexUpdate" for="inputTime" class="col-sm-3 control-label"></label>
+                              </div>
+                              <div class="form-group">
+                                  <label for="inputSer" class="col-sm-2 control-label">主营业务</label>
+                                  <div class="col-sm-7">
+                                      <input  name="Bservice" class="col-sm-4 form-control" id="inputServiceUpdate" placeholder=""/>
+                                  </div>
+                                  <label id="errorCerUpdate" for="inputSer" class="col-sm-3 control-label"></label>
+                              </div>
+
+
+                              <div class="modal-footer">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal" οnclick="resetAddModal()">取消</button>
+                                  <button type="submit" id="confUpdate" class="btn btn-default" >确定</button>
+                              </div>
+                          </form>
+                      </div>
+
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+      </body>
+      </html>

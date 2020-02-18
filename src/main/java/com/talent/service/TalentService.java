@@ -74,4 +74,10 @@ public class TalentService {
 
     //人才注册
     public Integer talentUpdate(talent talent) { return talentmapper.talentUpdate(talent); }
+
+    public talent TalentByTusername(String eusername)
+    {
+        return talentmapper.TalentByTusername(eusername);
+    }
+
 }

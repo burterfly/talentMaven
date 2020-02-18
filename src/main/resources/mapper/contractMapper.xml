@@ -95,6 +95,8 @@
 
   <!--  //删除已发布信息 -->
   <delete id="delContract" parameterType="com.talent.entity.contract">
-    	  delete  from contract  where Tid= #{tid}
+    	  delete  from contract  where Bid= #{bid}
     	</delete>
+
+
 </mapper>

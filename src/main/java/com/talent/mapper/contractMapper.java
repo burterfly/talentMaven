@@ -10,6 +10,8 @@ public interface contractMapper {
     //查询指定公司合同
     List<contract> listContract(Integer bid);
 
-    //查询指定公司合同 删除指定tid的数据
-    Integer delContract(Integer tid);
+    //删除指定bid的数据
+    Integer delContract(Integer bid);
+
+
 }

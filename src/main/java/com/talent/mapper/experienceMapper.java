@@ -26,4 +26,10 @@ public interface experienceMapper {
     Integer delExperience(Integer tid);
 
     List<experience> listalbum();
+
+    List<experience> listallpublic();
+
+    Integer delCexperience(Integer bid);
+
+    Integer  experienceUpdate(experience experience);
 }

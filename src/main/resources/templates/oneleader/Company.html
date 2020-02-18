@@ -46,7 +46,7 @@
 <header>
     <h1><img src="/twoleader/images/admin_logo.png"/></h1>
     <ul class="rt_nav">
-        <li><a href="#" class="admin_icon">人民银行</a></li>
+        <li><a href="#"   th:text = "${listbusiness.getBname()}"  class="admin_icon"></a></li>
         <li><a href="../business/exit" class="quit_icon">安全退出</a></li>
     </ul>
 </header>
@@ -103,7 +103,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ms-for="el in @contractList">
+                <tr ms-for="($index  el) in @contractList">
                     <td class="center">{{$index+1}}</td>
                     <td class="center">{{el.cname}}</td>
                     <td class="center">{{el.ccontent}}</td>

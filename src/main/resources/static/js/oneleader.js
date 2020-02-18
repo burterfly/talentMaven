@@ -13,7 +13,7 @@ var viewmodel = avalon.define({
         viewmodel.curSectionIndex =index;
         if (index==0)
         {
-            alert(index);
+
             $.ajax({
                 type: "get",
                 url: "/business/listBusiness",    //向springboot请求数据的url
@@ -81,9 +81,10 @@ var viewmodel = avalon.define({
             }
         });
     },
-    editpublic: function (bid) {
-        var etime=prompt("请输入：","工作时间");
+    editpublic: function (bid){
+    var time = new Date();
         var ejob=prompt("请输入：","职务");
+        var etime=prompt("请输入：","工作时间");
         $.ajax({
             type: "get",
             url: "/business/editpublish?etime="+etime+"&ejob="+ejob,    //向springboot请求数据的url

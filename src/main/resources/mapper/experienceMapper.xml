@@ -127,4 +127,18 @@
   <select id="listalbum" resultType="experience">
     	 select * from experience  where Tid is  not null  and  Bid is not  null  and  Esco is not null
     	</select>
+
+  <select id="listallpublic" resultType="experience">
+    	 select * from experience  where Tid is  null 
+    	</select>
+
+  <delete id="delCexperience" parameterType="com.talent.entity.experience">
+    	  delete  from experience  where Bid= #{bid}
+    	</delete>
+
+
+  <update id="experienceUpdate" parameterType="com.talent.entity.experience">
+    	 update experience set Tid=#{tid}	where Eid=#{eid}
+    	</update>
+
 </mapper>

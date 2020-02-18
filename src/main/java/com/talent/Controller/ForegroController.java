@@ -1,9 +1,6 @@
 package com.talent.Controller;
 
-import com.talent.entity.account;
-import com.talent.entity.business;
-import com.talent.entity.experience;
-import com.talent.entity.talent;
+import com.talent.entity.*;
 import com.talent.service.TalentService;
 import com.talent.service.businessService;
 import com.talent.service.foregroService;
@@ -52,6 +49,18 @@ public class ForegroController {
             Integer tid=user.getTid();
             session.setAttribute("tid", tid);
             return "redirect:/talent/listTalent?tid="+tid;
+        }
+        return "foregro/loginError";
+    }
+
+
+    @RequestMapping(value = {"/stafflogin"})
+    public String stafflogin(@RequestParam("username") String username,
+                              @RequestParam("password") String password,
+                              HttpSession session){
+        staff user =foregroservice.stafflogin(username,password);
+        if(user != null){
+            return "redirect:/staff/User";
         }
         return "foregro/loginError";
     }
@@ -129,6 +138,25 @@ public class ForegroController {
         model.addAttribute("listbusiness", listbusiness);
         return "foregro/album_detail";
     }
+
+    @RequestMapping(value ="/toarticle_details")
+    public String toarticle_details(Model model){
+        List<experience> listallpublic=foregroservice.listallpublic();
+        for (int i = 0; i < listallpublic.size(); i++) {
+            String name;
+            String address;
+            Integer j=listallpublic.get(i).getBid();
+            name = businessservice.listBusiness(j).getBname();
+            address = businessservice.listBusiness(j).getBaddress();
+
+            listallpublic.get(i).setBname(name);
+            listallpublic.get(i).setEother(address);
+        }
+
+        model.addAttribute("listallpublic", listallpublic);
+        return "foregro/article_details";
+    }
+
     @RequestMapping(value ="/toarticle", method = RequestMethod.GET)
     public String toarticle(){
         return "foregro/article";

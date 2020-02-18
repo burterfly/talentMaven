@@ -19,7 +19,7 @@
  <h1><img src="/twoleader/images/admin_logo.png"/></h1>
  <ul class="rt_nav">
   <li><a href="#" class="admin_icon">管理员10055</a></li>
-  <li><a href="login.jsp" class="quit_icon">安全退出</a></li>
+  <li><a href="../business/exit" class="quit_icon">安全退出</a></li>
  </ul>
 </header>
 
@@ -32,7 +32,9 @@
   <li>
    <dl>
     <dt>职员管理</dt>
-    <dd><a ms-click="@ClickMenu(0)" type='button' class="active">员工管理</a></dd>
+  <!--  <dd><a ms-click="@ClickMenu(0)" type='button' >员工管理</a></dd>-->
+    <dd><a  href="/staff/User"  type='button' >员工管理</a></dd>
+
     <dd><a href=" " >发放工资</a></dd>
     <dd><a href=" " >履职经历</a></dd>
    </dl>
@@ -40,8 +42,9 @@
   <li>
    <dl>
     <dt>企业管理</dt>
-    <dd><a ms-click="@ClickMenu(1)" type='button'>公司管理</a></dd>
-    <dd><a href=" " >企业招聘</a></dd>
+  <!--  <dd><a ms-click="@ClickMenu(1)" >公司管理</a></dd>-->
+    <dd><a  href="/staff/Company"  type='button' >公司管理</a></dd>
+    <dd><a href="/staff/Public" >企业招聘</a></dd>
    </dl>
   </li>
   <dt><a ms-click="@ClickMenu(2)" type='button' >合同管理</a></dt>
@@ -53,10 +56,10 @@
 <div>
  <section th:replace="leader/UserEditor::talentShowSection"/>
 
- <section th:replace="leader/CompanyEditor::companyShowSection"/>
+ <!--<section th:replace="leader/CompanyEditor::companyShowSection"/>-->
 
  //员工合同的显示
- <section ms-visible="2==@curSectionIndex" class="rt_wrap content mCustomScrollbar">
+ <!--<section ms-visible="2==@curSectionIndex" class="rt_wrap content mCustomScrollbar">
   <div class="rt_content">
    <div class="page_title">
     <h2 class="fl">合同管理</h2>
@@ -76,7 +79,7 @@
     </tbody>
    </table>
   </div>
- </section>
+ </section>-->
 
  <section  class="rt_wrap content mCustomScrollbar"></section>
  <section  class="rt_wrap content mCustomScrollbar"></section>

@@ -208,5 +208,8 @@
 		where Tid=#{tid}
     	</update>
 
+  <select id="TalentByTusername" resultType="talent">
+    	  select * from talent  where Tusername=#{tusername}
+    	</select>
 
 </mapper>

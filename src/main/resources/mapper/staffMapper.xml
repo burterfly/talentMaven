@@ -80,6 +80,11 @@
     where Sid = #{sid,jdbcType=INTEGER}
   </update>
 
+  <select id="stafflogin" resultType="staff">
+    	   select * from staff where Susername=#{username} and Spassword=#{password}
+    	</select>
 
-
+  <select id="listContract" resultType="contract">
+    	   select * from contract
+    	</select>
 </mapper>

@@ -11,4 +11,6 @@ public interface moneyMapper {
     List<money> listMoney(Integer tid);
 
     Integer delMoney(Integer tid);
+
+    Integer addWages(money money);
 }

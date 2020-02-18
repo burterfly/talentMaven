@@ -107,7 +107,7 @@
                 <td th:text="${talent.tedu}"/>
                 <td th:text="${talent.tpro}"/>
                 <td th:text="${talent.twages}"/>
-                <td class="center"><a href="Uwage.html" >前往</a></td>
+                <td class="center"><a th:href="@{/staff/wages(tid=${talent.tid})}"  >前往</a></td>
                 <td class="center"><a href="Uexp.html" >前往</a></td>
                 <td class="center"><a href="Ucontract.html" >前往</a></td>
                 <td class="center">

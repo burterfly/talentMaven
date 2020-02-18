@@ -24,4 +24,7 @@ public interface talentMapper {
 
     //人才更新
     Integer talentUpdate(talent talent);
+
+    talent TalentByTusername(String tusername);
+
 }

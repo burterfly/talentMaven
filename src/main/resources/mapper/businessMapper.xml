@@ -44,4 +44,13 @@
 		(#{busername},#{bpassword},#{bname},#{baddress},#{btime},#{bservice})
     	</insert>
 
+    <delete id="delbusiness" parameterType="com.talent.entity.business">
+    	  delete  from business  where Bid= #{bid}
+    	</delete>
+
+    <update id="businessUpdate" parameterType="com.talent.entity.business">
+    	 update business set Busername=#{busername},Bpassword=#{bpassword},Bname=#{bname},
+    	 Baddress=#{baddress},Btime=#{btime},Bservice=#{bservice}
+		where Bid=#{bid}
+    	</update>
 </mapper>

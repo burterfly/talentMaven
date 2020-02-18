@@ -70,5 +70,55 @@
                     }
                 }
             });
-    }
+    };
+
+    function updateBusiness(id) {
+        if(!id){
+            alert('id错误');
+            return false;
+        }
+        alert('update'+id);
+        $.ajax(
+            {
+                url:"/staff/requrstBusiness",
+                data:{"bid":id},
+                type:"post",
+                //解决编码问题
+                scriptCharset: 'utf-8',
+                beforeSend:function () {
+                    return true;
+                },
+                success:function (data) {
+                    alert(data.busername)
+                    document.getElementById("inputBid").value = data.bid;
+                    document.getElementById("inputAccountUpdate").value = data.busername;
+                    document.getElementById("inputPasswordUpdate").value = data.bpassword;
+                    document.getElementById("inputNameUpdate").value = data.bname;
+                    document.getElementById("inputAddressUpdate").value = data.baddress;
+                    document.getElementById("inputTimeUpdate").value = data.btime;
+                    document.getElementById("inputServiceUpdate").value = data.bservice;
+                    if(data){
+                        $('#username').attr("readonly","readonly");
+                    }
+                }
+            });
+    };
+
+    function updatepublic(eid) {
+        $.ajax(
+            {
+                url: "/staff/updatePublic",    //向springboot请求数据的url
+                data:{"eid":eid},
+                type:"post",
+                //解决编码问题
+                scriptCharset: 'utf-8',
+                beforeSend:function () {
+                    return true;
+                },
+                success:function (data) {
+
+                }
+            });
+
+    };
 </script>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>后台管理系统</title>
+    <style th:replace="leader/UserEditor::modalStyle"></style>
+
+    <meta name="author" content="DeathGhost" />
+
+    <link rel="stylesheet" type="text/css" href="/twoleader/css/style.css">
+    <div th:include="leader/footer.html"></div>
+</head>
+<style th:fragment="modalStyle">
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 17px;
+        line-height: 1.6;
+    }
+    .button{
+        border: 0;    /* 去除原button边框样式 */
+        background-color: coral;
+        color: #fff;
+        padding: 1em 2em;
+    }
+    .button:hover{
+        background-color: #333;
+    }
+    .modal{
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        background-color: rgba(0, 0, 0,0.5);
+    }
+    .modal-content{
+        background-color: #f4f4f4;
+        margin: 15% auto;
+        width: 80%;
+        box-shadow: 0 5px 8px 0 rgba(0, 0, 0,0.2), 0 7px 20px 0 rgba(0, 0, 0,0.2);
+        animation-name: modalopen;
+        animation-duration: 1s;
+    }
+    .modal-header h2,.modal-footer h3{
+        margin: 0;
+    }
+    .modal-header{
+        background-color: coral;
+        padding: 15px;
+        color: #fff;
+    }
+    .closeBtn{
+        color: #fff;
+        float: right;
+        font-size: 30px;
+    }
+    .closeBtn:hover,.closeBtn:focus{
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .modal-body{
+        padding:10px 20px;
+    }
+    .modal-footer{
+        color: #fff;
+        background-color: coral;
+        padding: 10px;
+        text-align: center;
+    }
+    @keyframes modalopen{
+        from {opacity: 0}
+        to {opacity: 1}
+    }
+</style>
+
+
+<body >
+<header>
+
+    <h1><img src="/twoleader/images/admin_logo.png"/></h1>
+    <ul class="rt_nav">
+        <li><a href="#" class="admin_icon">管理员</a></li>
+        <li><a href="../business/exit" class="quit_icon">安全退出</a></li>
+    </ul>
+</header>
+
+<div >
+    <aside class="lt_aside_nav content mCustomScrollbar">
+        <ul>
+            <li>
+                <dl>
+                    <dt>功能管理</dt>
+            <li>
+                <dl>
+                    <dt>职员管理</dt>
+                    <dd><a  href="/staff/User"  type='button' >员工管理</a></dd>
+                    <dd><a href=" " >发放工资</a></dd>
+                    <dd><a href=" " >履职经历</a></dd>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt>企业管理</dt>
+                    <dd><a  href="/staff/Company"  type='button' >公司管理</a></dd>
+                    <dd><a href="/staff/Public" >企业招聘</a></dd>
+                </dl>
+            </li>
+            <dt><a ms-click="@ClickMenu(2)" type='button' >合同管理</a></dt>
+            <dt><a href="Company.html" >留言</a></dt>
+            </dl>
+            </li>
+        </ul>
+    </aside>
+    <div>
+
+
+
+        <section th:fragment="wagesShowSection"   class="rt_wrap content mCustomScrollbar">
+            <div class="rt_content">
+                <div class="page_title">
+                    <h2 class="fl">工资管理</h2>
+                </div>
+
+                <div th:replace="leader/Wages::addWagesModal"></div>
+
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>时间</th>
+                        <th>发放平台</th>
+                        <th>职务</th>
+                        <th>工资</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="money : ${listmoney}">
+                        <td class="center" th:text="${money.mtime}"></td>
+                        <td class="center" th:text="上海泉成人才派遣平台"></td>
+                        <td class="center" th:text="${money.mjob}"></td>
+                        <td class="center" th:text="${money.mmoney}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+
+        //添加工资的 模态
+        <div th:fragment="addWagesModal">
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalbb">
+                添加工资
+            </button>
+
+            <div class="modal fade" id="myModalbb"  >
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>添加工资</h3>
+                        </div>
+                        <div class="modal-body">
+                            <form id="addBusinessForm" action="/staff/addWages" method="post" class="form-horizontal">
+                                <div class="form-group">
+
+                                    <label for="inputTime" class="col-sm-2 control-label">时间</label>
+                                    <div class="col-sm-7">
+                                        <input  name="Mtime" class="form-control" id="inputTime" placeholder="时间"/>
+                                    </div>
+                                    <label id="errorTime" for="inputTime" class="col-sm-3 control-label"></label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputMjob" class="col-sm-2 control-label">职务</label>
+                                    <div class="col-sm-7">
+                                        <input  name="Mjob" class="col-sm-4 form-control" id="inputMjob" placeholder="职务"/>
+                                    </div>
+                                    <label id="errorMjob" for="inputMjob" class="col-sm-3 control-label"></label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputMmoney" class="col-sm-2 control-label">工资</label>
+                                    <div class="col-sm-7">
+                                        <input  name="Mmoney" class="col-sm-4 form-control" id="inputMmoney" placeholder="工资"/>
+                                    </div>
+                                    <label id="errorMmoney" for="inputMmoney" class="col-sm-3 control-label"></label>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" οnclick="resetAddModal()">取消</button>
+                                    <button type="submit" id="conf" class="btn btn-default" >确定</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+

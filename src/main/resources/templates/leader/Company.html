@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>后台管理系统</title>
+    <style th:replace="leader/UserEditor::modalStyle"></style>
+
+    <meta name="author" content="DeathGhost" />
+
+    <link rel="stylesheet" type="text/css" href="/twoleader/css/style.css">
+    <div th:include="leader/footer.html"></div>
+
+</head>
+<body >
+
+<!--header-->
+<header>
+
+    <h1><img src="/twoleader/images/admin_logo.png"/></h1>
+    <ul class="rt_nav">
+        <li><a href="#" class="admin_icon">管理员10055</a></li>
+        <li><a href="../business/exit" class="quit_icon">安全退出</a></li>
+    </ul>
+</header>
+
+<div ms-controller='companymodel'>
+    <aside class="lt_aside_nav content mCustomScrollbar">
+        <ul>
+            <li>
+                <dl>
+                    <dt>功能管理</dt>
+            <li>
+                <dl>
+                    <dt>职员管理</dt>
+                    <!--  <dd><a ms-click="@ClickMenu(0)" type='button' >员工管理</a></dd>-->
+                    <dd><a  href="/staff/User" ms-click="@ClickMenu(0)" type='button' >员工管理</a></dd>
+
+                    <dd><a href=" " >发放工资</a></dd>
+                    <dd><a href=" " >履职经历</a></dd>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt>企业管理</dt>
+                    <!--  <dd><a ms-click="@ClickMenu(1)" >公司管理</a></dd>-->
+                    <dd><a  href="/staff/Company" ms-click="@ClickMenu(1)" type='button' >公司管理</a></dd>
+                    <dd><a href="/staff/Public" >企业招聘</a></dd>
+                </dl>
+            </li>
+            <dt><a ms-click="@ClickMenu(2)" type='button' >合同管理</a></dt>
+            <dt><a href="Company.html" >留言</a></dt>
+            </dl>
+            </li>
+        </ul>
+    </aside>
+    <div>
+
+        <section th:replace="leader/CompanyEditor::companyShowSection"/>
+
+        //员工合同的显示
+       <!-- <section ms-visible="2==@curSectionIndex" class="rt_wrap content mCustomScrollbar">
+            <div class="rt_content">
+                <div class="page_title">
+                    <h2 class="fl">合同管理</h2>
+                </div>
+                <table class="table">
+                    <tr>
+                        <th style="width: 70px; ">合同名称</th>
+                        <th style="width: 70px; ">详情</th>
+                        <th style="width: 70px; ">操作</th>
+                    </tr>
+                    <tbody>
+                    <tr ms-for="el in @contractList">
+                        <td >{{el.cname}}</td>
+                        <td >{{el.ccontent}}</td>
+                        <td class="center">删除/添加</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>-->
+
+        <section  class="rt_wrap content mCustomScrollbar"></section>
+        <section  class="rt_wrap content mCustomScrollbar"></section>
+    </div>
+</div>
+</body>
+</html>

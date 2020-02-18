@@ -98,4 +98,11 @@
   <delete id="delMoney" parameterType="com.talent.entity.money">
     	  delete  from money  where Tid= #{tid}
     	</delete>
+
+  <insert id="addWages" parameterType="com.talent.entity.money">
+    	 insert money (Tid,Mtime,Mjob,Mmoney)
+	     value
+		(#{tid},#{mtime},#{mjob},#{mmoney})
+    	</insert>
+
 </mapper>
